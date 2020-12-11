@@ -7,5 +7,6 @@ import com.bikerental.model.Provider;
 
 @Repository
 public interface ProviderRepository extends JpaRepository<Provider, Long> {
-	
+	public Provider findByProvEmailAndProvPassword(String provEmail, String provPassword );
+	public Provider findByProvEmail(String provEmail);
 }

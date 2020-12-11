@@ -9,15 +9,15 @@ import javax.persistence.UniqueConstraint;
 
 // uniqueConstraints = {@UniqueConstraint(columnNames = {"Email"})}
 @Entity
-@Table(name="provider", uniqueConstraints = @UniqueConstraint(columnNames = "provEmail"))
+@Table(name="provider")
 public class Provider {
 	@Id
 	@GeneratedValue
 	long provId;
-	//@Column(unique=true)
+	@Column(unique=true)
 	String provEmail;
 	String provPassword;
-	String proveFname;
+	String provFname;
 	String provDateofBirth;
 	int provAge;
 	String provContoctNo;
@@ -39,11 +39,11 @@ public class Provider {
 	public void setProvPassword(String provPassword) {
 		this.provPassword = provPassword;
 	}
-	public String getProveFname() {
-		return proveFname;
+	public String getProvFname() {
+		return provFname;
 	}
-	public void setProveFname(String proveFname) {
-		this.proveFname = proveFname;
+	public void setProvFname(String provFname) {
+		this.provFname = provFname;
 	}
 	
 	
@@ -114,14 +114,14 @@ public class Provider {
 	public void setProvPin(String provPin) {
 		this.provPin = provPin;
 	}
-	public Provider(long provId, String provEmail, String provPassword, String proveFname, String provDateofBirth,
+	public Provider(long provId, String provEmail, String provPassword, String provFname, String provDateofBirth,
 			int provAge, String provContoctNo, String provAadhar, String provRcBookNo, String provAddress,
 			String provCity, String provState, String provPin) {
 		super();
 		this.provId = provId;
 		this.provEmail = provEmail;
 		this.provPassword = provPassword;
-		this.proveFname = proveFname;
+		this.provFname = provFname;
 		this.provDateofBirth = provDateofBirth;
 		this.provAge = provAge;
 		this.provContoctNo = provContoctNo;

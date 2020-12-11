@@ -18,9 +18,9 @@ public class ProviderServiceImple implements ProviderService {
 	private ProviderRepository providerRepository;
 
 	@Override
-	public void addProvider(Provider provider) {
+	public Provider addProvider(Provider provider) {
 		// TODO Auto-generated method stub
-		providerRepository.save(provider);
+		return providerRepository.save(provider);
 
 	}
 
@@ -56,6 +56,18 @@ public class ProviderServiceImple implements ProviderService {
 		}
 		
 		return li;
+	}
+
+	
+
+	@Override
+	public Provider findProviderEmailAndPassword(String provEmail, String provPassword) {
+		return providerRepository.findByProvEmailAndProvPassword(provEmail, provPassword);
+	}
+
+	@Override
+	public Provider findProviderEmail(String provEmail) {		
+		return providerRepository.findByProvEmail(provEmail);
 	}
 
 }
