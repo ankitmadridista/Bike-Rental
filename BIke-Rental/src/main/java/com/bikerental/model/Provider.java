@@ -20,7 +20,7 @@ public class Provider {
 	String provFname;
 	String provDateofBirth;
 	int provAge;
-	String provContoctNo;
+	String provContactNo;
 	String provAadhar;
 	String provRcBookNo;
 	String provAddress;
@@ -44,8 +44,7 @@ public class Provider {
 	}
 	public void setProvFname(String provFname) {
 		this.provFname = provFname;
-	}
-	
+	}	
 	
 	public int getProvAge() {
 		return provAge;
@@ -96,11 +95,11 @@ public class Provider {
 	public void setProvDateofBirth(String provDateofBirth) {
 		this.provDateofBirth = provDateofBirth;
 	}
-	public String getProvContoctNo() {
-		return provContoctNo;
+	public String getProvContactNo() {
+		return provContactNo;
 	}
-	public void setProvContoctNo(String provContoctNo) {
-		this.provContoctNo = provContoctNo;
+	public void setProvContactNo(String provContactNo) {
+		this.provContactNo = provContactNo;
 	}
 	public String getProvRcBookNo() {
 		return provRcBookNo;
@@ -115,7 +114,7 @@ public class Provider {
 		this.provPin = provPin;
 	}
 	public Provider(long provId, String provEmail, String provPassword, String provFname, String provDateofBirth,
-			int provAge, String provContoctNo, String provAadhar, String provRcBookNo, String provAddress,
+			int provAge, String provContactNo, String provAadhar, String provRcBookNo, String provAddress,
 			String provCity, String provState, String provPin) {
 		super();
 		this.provId = provId;
@@ -124,7 +123,7 @@ public class Provider {
 		this.provFname = provFname;
 		this.provDateofBirth = provDateofBirth;
 		this.provAge = provAge;
-		this.provContoctNo = provContoctNo;
+		this.provContactNo = provContactNo;
 		this.provAadhar = provAadhar;
 		this.provRcBookNo = provRcBookNo;
 		this.provAddress = provAddress;
