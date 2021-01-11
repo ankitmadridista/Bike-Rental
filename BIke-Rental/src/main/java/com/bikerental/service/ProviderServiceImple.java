@@ -19,34 +19,28 @@ public class ProviderServiceImple implements ProviderService {
 
 	@Override
 	public Provider addProvider(Provider provider) {
-		// TODO Auto-generated method stub
 		return providerRepository.save(provider);
 
 	}
 
 	@Override
 	public void removeProvider(long id) {
-		// TODO Auto-generated method stub
 		providerRepository.deleteById(id);
 	}
 
 	@Override
 	public Provider getProvider(long id) {
-		// TODO Auto-generated method stub
 		Optional<Provider> opt = providerRepository.findById(id);
 		return opt.get();
 	}
 
 	@Override
 	public void modifyProvider(Provider provider) {
-		// TODO Auto-generated method stub
 		providerRepository.save(provider);
-
 	}
 
 	@Override
 	public List<Provider> getAll() {
-		// TODO Auto-generated method stub
 		Iterable<Provider> itr = providerRepository.findAll();
 		Iterator<Provider> it = itr.iterator();
 		List<Provider> li = new ArrayList<Provider>();

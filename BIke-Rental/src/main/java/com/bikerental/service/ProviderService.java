@@ -2,7 +2,6 @@ package com.bikerental.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
 
 import com.bikerental.model.Provider;
 
