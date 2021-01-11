@@ -13,5 +13,4 @@ public interface BikeService {
 	public List<Bike> getAll();
 	public Bike getByBikeNo(String bikeNo);
 	public List<Bike> getByProvId(long provId);
-	//public List<Provider> getAllProv();
 }	
