@@ -70,5 +70,16 @@ public class BikeServiceImple implements BikeService {
 		return bikeRepository.findAllBikesByStatus(status);
 	}
 
+	@Override
+	public void modifyBikeStatusToAvailable(long bikeId) {
+		bikeRepository.updateBikeStatus("Available",bikeId);
+		
+	}
+	@Override
+	public void modifyBikeStatusToRejected(long bikeId) {
+		bikeRepository.updateBikeStatus("Rejected",bikeId);
+		
+	}
+
 
 }

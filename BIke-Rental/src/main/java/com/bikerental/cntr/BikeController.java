@@ -27,7 +27,7 @@ public class BikeController {
 	@PostMapping(value = "bikes")
 	public Bike addProv(@RequestBody Bike bike) throws Exception {
 		String tempBikeNo = bike.getBikeNo();
-		bike.setBikeStatus("Available");
+		bike.setBikeStatus("Requested");
 		//System.out.println("bike no: "+tempBikeNo);
 		if( tempBikeNo != null && !"".equals(tempBikeNo)) {
 			Bike bikeObj = bikeService.getByBikeNo(tempBikeNo);
@@ -75,6 +75,22 @@ public class BikeController {
 	public List<Bike> getBikeByStatus(@PathVariable String status) {
 		return bikeService.getAllBikesByStatus(status);
 	
+	}
+	
+	//accept bike
+	@GetMapping(value = "bikesUpdateToAvailable/{bikeId}")
+	public String updateStatusToAvl(@PathVariable long bikeId) {
+		System.out.println(bikeId);
+		bikeService.modifyBikeStatusToAvailable(bikeId);	
+		return "success";
+	}
+	
+	//reject bike
+	@GetMapping(value = "bikesUpdateToRejected/{bikeId}")
+	public String updateStatusToRej(@PathVariable long bikeId) {
+		System.out.println(bikeId);
+		bikeService.modifyBikeStatusToRejected(bikeId);	
+		return "success";
 	}
 	
 	
