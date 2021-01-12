@@ -36,8 +36,9 @@ public class BikeServiceImple implements BikeService {
 	}
 
 	@Override
-	public void modifyBike(Bike bike) {
+	public String modifyBike(Bike bike) {
 		bikeRepository.save(bike);
+		return "success";
 	}
 
 	@Override
@@ -64,17 +65,10 @@ public class BikeServiceImple implements BikeService {
 		return bikeRepository.findAllByProvId(provId);
 	}
 
-//	@Override
-//	public List<Provider> getAllProv() {
-//		Iterable<Provider> itr = providerRepository.findAll();
-//		Iterator<Provider> it = itr.iterator();
-//		List<Provider> li = new ArrayList<Provider>();
-//		
-//		while(it.hasNext()) {
-//			li.add(it.next());
-//		}
-//		
-//		return li;
-//	}
+	@Override
+	public List<Bike> getAllBikesByStatus(String status) {
+		return bikeRepository.findAllBikesByStatus(status);
+	}
+
 
 }

@@ -70,4 +70,12 @@ public class BikeController {
 		return "success";
 	}
 	
+	
+	@GetMapping(value = "bikesByStatus/{status}")
+	public List<Bike> getBikeByStatus(@PathVariable String status) {
+		return bikeService.getAllBikesByStatus(status);
+	
+	}
+	
+	
 }

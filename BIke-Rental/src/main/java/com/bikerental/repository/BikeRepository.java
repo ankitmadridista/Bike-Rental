@@ -19,4 +19,8 @@ public interface BikeRepository extends JpaRepository<Bike, Long>{
 //	@Query("select u from User u where u.firstname = :firstname or u.lastname = :lastname")
 //	  User findByLastnameOrFirstname(@Param("lastname") String lastname,
 //	                                 @Param("firstname") String firstname);
+
+	//jpql
+	@Query("SELECT ud from bike ud where ud.bikeStatus=?1")
+	public List<Bike> findAllBikesByStatus(String status);
 }

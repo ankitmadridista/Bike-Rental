@@ -76,9 +76,15 @@ public class AdminServiceImple implements AdminService {
 	
 //	@Override
 //	public List<Bike> getAllAvailableBikes() {
-//		return bikeRepository.findAllAvailableBikes();
+//		return adminRepo.findAllAvailableBikes();
 //	}
-//	
+	
+//	public void updateProductDetails(int pid, int spid) {
+//		String sql = "update productdetails SET sp_id ="+spid+" WHERE product_id="+pid;
+//		System.out.println("SQL "+sql);
+//		jdbcTemplate.execute(sql);
+//	}
+	
 	
 
 }

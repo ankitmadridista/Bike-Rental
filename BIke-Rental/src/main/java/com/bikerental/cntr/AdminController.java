@@ -2,6 +2,8 @@ package com.bikerental.cntr;
 
 import java.util.List;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,7 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bikerental.model.Admin;
 import com.bikerental.model.Bike;
 import com.bikerental.model.Provider;
+import com.bikerental.repository.BikeRepository;
 import com.bikerental.service.AdminService;
+import com.bikerental.service.BikeService;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -24,6 +28,8 @@ import com.bikerental.service.AdminService;
 public class AdminController {
 	@Autowired
 	private AdminService adminService;
+	@Autowired
+	private BikeService bikeService;
 	
 	@PostMapping(value = "admin")
 	public Admin insertAdmin(@RequestBody Admin admin) throws Exception {
@@ -86,10 +92,10 @@ public class AdminController {
 		return adminService.getAllBikes();
 	}
 	
-//	@GetMapping(value = "adminAvailableBikes")
-//	public List<Bike> getAvailableBikesList(){
-//		return adminService.getAllAvailableBikes();
-//	}
+	@GetMapping(value = "adminBikeByStatus/{status}")
+	public List<Bike> getAvailableBikesList(@PathVariable String status){
+		return bikeService.getAllBikesByStatus(status);
+	}
 	
 	
 }
