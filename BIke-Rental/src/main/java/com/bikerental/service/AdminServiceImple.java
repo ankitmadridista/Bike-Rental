@@ -73,6 +73,12 @@ public class AdminServiceImple implements AdminService {
 	public List<Bike> getAllBikes() {
 		return bikeRepository.findAll();
 	}
+
+	@Override
+	public Admin findAdminEmailAndPassword(String adminEmail, String adminPassword) {
+		
+		return adminRepo.findByAdminEmailAndAdminPassword(adminEmail, adminPassword);
+	}
 	
 //	@Override
 //	public List<Bike> getAllAvailableBikes() {

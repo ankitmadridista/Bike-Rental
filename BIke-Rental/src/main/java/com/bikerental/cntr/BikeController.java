@@ -80,7 +80,7 @@ public class BikeController {
 	//accept bike
 	@GetMapping(value = "bikesUpdateToAvailable/{bikeId}")
 	public String updateStatusToAvl(@PathVariable long bikeId) {
-		System.out.println(bikeId);
+		//System.out.println(bikeId);
 		bikeService.modifyBikeStatusToAvailable(bikeId);	
 		return "success";
 	}
@@ -88,7 +88,7 @@ public class BikeController {
 	//reject bike
 	@GetMapping(value = "bikesUpdateToRejected/{bikeId}")
 	public String updateStatusToRej(@PathVariable long bikeId) {
-		System.out.println(bikeId);
+		//System.out.println(bikeId);
 		bikeService.modifyBikeStatusToRejected(bikeId);	
 		return "success";
 	}

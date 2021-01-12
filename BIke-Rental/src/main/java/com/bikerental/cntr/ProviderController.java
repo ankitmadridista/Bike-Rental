@@ -51,13 +51,14 @@ public class ProviderController {
 		providerService.removeProvider(id);
 		return "success";
 	}
-	
+	@CrossOrigin(origins = "*")
 	@GetMapping(value = "providers/{id}")
 	public Provider getProv(@PathVariable long id) {
 		return providerService.getProvider(id);
 	
 	}
 	
+	@CrossOrigin(origins = "*")
 	@PutMapping(value = "providers")
 	public String provUpdate(@RequestBody Provider provider) {
 		providerService.modifyProvider(provider);	

@@ -47,6 +47,21 @@ public class AdminController {
 		return adminService.addAdmin(admin);		
 	}	
 	
+	@PostMapping(value = "admin-check")
+	@CrossOrigin(origins = "*")
+	public Admin checkAdmin(@RequestBody Admin admin) throws Exception {
+		String email = admin.getAdminEmail();
+		String password = admin.getAdminPassword();
+		Admin adminObj = null;
+		if( email != null && password != null ) {
+			adminObj = adminService.findAdminEmailAndPassword(email, password);
+		}
+		if( adminObj == null ) {
+			throw new Exception("Invalid Credentials");
+		}
+		return adminObj;		 
+	}
+	
 	@DeleteMapping(value = "admin/{id}")
 	public String deleteAdmin(@PathVariable long id) {
 		adminService.removeAdmin(id);

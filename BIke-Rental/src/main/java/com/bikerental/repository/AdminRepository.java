@@ -13,6 +13,7 @@ import com.bikerental.model.Bike;
 @Repository
 public interface AdminRepository extends JpaRepository<Admin, Long> {
 	public Admin findByAdminEmail(String adminEmail);
+	public Admin findByAdminEmailAndAdminPassword(String adminEmail, String adminPassword);
 	
 //	QueryfindAllAvailableBikes
 //	@Query("select u from Bike u where u.status = Available")
