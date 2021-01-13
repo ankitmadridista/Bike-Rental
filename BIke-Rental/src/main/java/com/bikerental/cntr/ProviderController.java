@@ -27,6 +27,7 @@ public class ProviderController {
 	
 	@PostMapping(value = "providers")
 	public Provider addProv(@RequestBody Provider provider) throws Exception {
+		System.out.println("DOB: " + provider.getProvDateOfBirth());
 		String tempEmail = provider.getProvEmail();
 		System.out.println("email: "+tempEmail);
 		if( tempEmail != null && !"".equals(tempEmail)) {
