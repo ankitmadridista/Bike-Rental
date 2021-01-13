@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bikerental.model.Booking;
 import com.bikerental.model.Provider;
 import com.bikerental.service.BikeService;
+import com.bikerental.service.BookingService;
 import com.bikerental.service.ProviderService;
 
 //@CrossOrigin(origins = "http://localhost:4200")
@@ -28,6 +30,9 @@ public class ProviderController {
 	
 	@Autowired
 	private BikeService bikeService;
+	
+	@Autowired
+	private BookingService bookingService;
 	
 	@PostMapping(value = "providers")
 	public Provider addProv(@RequestBody Provider provider) throws Exception {
@@ -71,6 +76,7 @@ public class ProviderController {
 		return "success";
 	}
 	
+	//prov login
 	@PostMapping(value = "providers-check")
 	@CrossOrigin(origins = "*")
 	public Provider checkProv(@RequestBody Provider provider) throws Exception {
@@ -84,5 +90,18 @@ public class ProviderController {
 			throw new Exception("Invalid Credentials");
 		}
 		return provObj;		 
+	}
+	
+	
+	//get all bookings by provId
+	@GetMapping(value="provBooking/ProvId/{provId}")
+	public List<Booking> getprovBooking(@PathVariable long provId){
+		return bookingService.getByProvId(provId);
+	} 
+	
+	//get all bookings by bikeId
+	@GetMapping(value = "provBooking/BikeId/{bikeId}")
+	public List<Booking> getBikeBooking(@PathVariable long bikeId){
+		return bookingService.getByCustId(bikeId);
 	}
 }

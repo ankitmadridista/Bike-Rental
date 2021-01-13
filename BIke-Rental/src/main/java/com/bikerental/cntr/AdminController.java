@@ -17,10 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bikerental.model.Admin;
 import com.bikerental.model.Bike;
+import com.bikerental.model.Booking;
 import com.bikerental.model.Provider;
 import com.bikerental.repository.BikeRepository;
 import com.bikerental.service.AdminService;
 import com.bikerental.service.BikeService;
+import com.bikerental.service.BookingService;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -30,6 +32,9 @@ public class AdminController {
 	private AdminService adminService;
 	@Autowired
 	private BikeService bikeService;
+	@Autowired
+	private BookingService bookingService;
+	
 	
 	@PostMapping(value = "admin")
 	public Admin insertAdmin(@RequestBody Admin admin) throws Exception {
@@ -112,5 +117,41 @@ public class AdminController {
 		return bikeService.getAllBikesByStatus(status);
 	}
 	
+	@GetMapping(value = "adminBooking")
+	public List<Booking> getBookingList(){
+		return bookingService.getAllBooking();
+	}
+	
+	@GetMapping(value ="custbooking/{custId}")
+	public List<Booking> getCustBooking(@PathVariable long custId){
+		return bookingService.getByCustId(custId);
+	}
+	
+	@GetMapping(value = "bikeBooking/{bikeId}")
+	public List<Booking> getBikeBooking(@PathVariable long bikeId){
+		return bookingService.getByCustId(bikeId);
+	}
+	
+	@GetMapping(value="booking/{id}")
+	public Booking getBookingDetails(@PathVariable long id){
+		return bookingService.getByBookId(id);
+	}
+	
+	@GetMapping(value="provbooking/{provId}")
+	public List<Booking> getProvBooking(@PathVariable long provId)
+	{
+		return bookingService.getByProvId(provId);
+	} 
+	
+	@DeleteMapping(value="deletebooking/{id}")
+	public String deleteBooking(@PathVariable long id) {
+		bookingService.deleteBooking(id);
+		return "Sucess";
+	}
+	@PutMapping(value="updatebooking")
+	public String updateBooking(@RequestBody Booking book) {
+		bookingService.modifyBooking(book);
+		return "Sucess";
+	}
 	
 }
