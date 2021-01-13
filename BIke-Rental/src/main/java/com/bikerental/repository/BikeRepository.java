@@ -15,6 +15,11 @@ import com.bikerental.model.Bike;
 public interface BikeRepository extends JpaRepository<Bike, Long>{
 	public Bike findByBikeNo(String bikeNo);
 	public List<Bike> findAllByProvId(long id);
+	
+	@Modifying
+	@Query("DELETE from bike ud where ud.provId=?1")
+	@Transactional
+	public void deleteByProvId(long id);
 
 	//jpql
 	@Query("SELECT ud from bike ud where ud.bikeStatus=?1")

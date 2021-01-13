@@ -94,4 +94,12 @@ public class BikeController {
 	}
 	
 	
+	//test
+//	@DeleteMapping(value = "bikesProvId/{id}")
+//	public String deleteBikeByProvId(@PathVariable long id) {
+//		bikeService.removeBikeByProvId(id);
+//		return "success";
+//	}
+	
+	
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bikerental.model.Provider;
+import com.bikerental.service.BikeService;
 import com.bikerental.service.ProviderService;
 
 //@CrossOrigin(origins = "http://localhost:4200")
@@ -24,6 +25,9 @@ public class ProviderController {
 	
 	@Autowired
 	private ProviderService providerService;
+	
+	@Autowired
+	private BikeService bikeService;
 	
 	@PostMapping(value = "providers")
 	public Provider addProv(@RequestBody Provider provider) throws Exception {
@@ -49,6 +53,7 @@ public class ProviderController {
 	
 	@DeleteMapping(value = "providers/{id}")
 	public String provDelete(@PathVariable long id) {
+		bikeService.removeBikeByProvId(id);
 		providerService.removeProvider(id);
 		return "success";
 	}

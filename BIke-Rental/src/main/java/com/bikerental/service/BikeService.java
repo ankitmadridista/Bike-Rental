@@ -8,6 +8,7 @@ import com.bikerental.model.Provider;
 public interface BikeService {
 	public Bike addBike(Bike bike);
 	public void removeBike(long id);
+	public void removeBikeByProvId(long ProvId);
 	public Bike getBike(long id);
 	public String modifyBike(Bike bike);
 	public List<Bike> getAll();

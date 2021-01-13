@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bikerental.model.Bike;
-import com.bikerental.model.Provider;
 import com.bikerental.repository.BikeRepository;
 import com.bikerental.repository.ProviderRepository;
 
@@ -17,7 +16,6 @@ import com.bikerental.repository.ProviderRepository;
 public class BikeServiceImple implements BikeService {
 	@Autowired
 	private BikeRepository bikeRepository;
-	private ProviderRepository providerRepository;
 	
 	@Override
 	public Bike addBike(Bike bike) {		
@@ -78,6 +76,12 @@ public class BikeServiceImple implements BikeService {
 	@Override
 	public void modifyBikeStatusToRejected(long bikeId) {
 		bikeRepository.updateBikeStatus("Rejected",bikeId);
+		
+	}
+
+	@Override
+	public void removeBikeByProvId(long ProvId) {
+		bikeRepository.deleteByProvId(ProvId);
 		
 	}
 
