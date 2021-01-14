@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bikerental.model.Bike;
-import com.bikerental.model.Booking;
 import com.bikerental.model.Customer;
 import com.bikerental.service.BikeService;
 import com.bikerental.service.BookingService;
@@ -91,16 +90,13 @@ public class CustomerController {
 		return custObj;		 
 	}
 	
-	@GetMapping(value = "customerBikes")
+	@GetMapping(value = "customer-bikes")
 	public List<Bike> custBikesList(){
 		String status = "Available";
 		return bikeService.getAllBikesByStatus(status);
 	}
 	
-	@PostMapping(value = "booking")
-	public Booking addBooking(@RequestBody Booking booking) throws Exception {		
-			return bookingService.addBooking(booking);		
-	}
+	
 	
 
 

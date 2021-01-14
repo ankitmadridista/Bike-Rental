@@ -52,13 +52,13 @@ public class BikeController {
 		return "success";
 	}
 	
-	@GetMapping(value = "bikesByBikeId/{id}")
+	@GetMapping(value = "bikes-bikeId/{id}")
 	public Bike getBikeByBikeId(@PathVariable long id) {
 		return bikeService.getBike(id);
 	
 	}
 	
-	@GetMapping(value = "bikesByProvId/{id}")
+	@GetMapping(value = "bikes-provId/{id}")
 	public List<Bike> getBikeByProvId(@PathVariable long id) {
 		return bikeService.getByProvId(id);
 	
@@ -71,14 +71,14 @@ public class BikeController {
 	}
 	
 	
-	@GetMapping(value = "bikesByStatus/{status}")
+	@GetMapping(value = "bikes-status/{status}")
 	public List<Bike> getBikeByStatus(@PathVariable String status) {
 		return bikeService.getAllBikesByStatus(status);
 	
 	}
 	
 	//accept bike
-	@GetMapping(value = "bikesUpdateToAvailable/{bikeId}")
+	@GetMapping(value = "bikes-update-available/{bikeId}")
 	public String updateStatusToAvl(@PathVariable long bikeId) {
 		//System.out.println(bikeId);
 		bikeService.modifyBikeStatusToAvailable(bikeId);	
@@ -86,7 +86,7 @@ public class BikeController {
 	}
 	
 	//reject bike
-	@GetMapping(value = "bikesUpdateToRejected/{bikeId}")
+	@GetMapping(value = "bikes-update-rejected/{bikeId}")
 	public String updateStatusToRej(@PathVariable long bikeId) {
 		//System.out.println(bikeId);
 		bikeService.modifyBikeStatusToRejected(bikeId);	

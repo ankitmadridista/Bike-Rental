@@ -15,4 +15,7 @@ public interface BookingService {
 	public void modifyBooking(Booking booking);
 	public Booking addBooking(Booking booking);	
 	
+	public void modifyBookingStatusToRejected(long bookingId);
+	public void modifyBookingStatusToBooked(long bookingId);
+	
 }

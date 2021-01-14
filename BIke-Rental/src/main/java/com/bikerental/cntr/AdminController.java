@@ -2,8 +2,6 @@ package com.bikerental.cntr;
 
 import java.util.List;
 
-import javax.websocket.server.PathParam;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,9 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bikerental.model.Admin;
 import com.bikerental.model.Bike;
-import com.bikerental.model.Booking;
 import com.bikerental.model.Provider;
-import com.bikerental.repository.BikeRepository;
 import com.bikerental.service.AdminService;
 import com.bikerental.service.BikeService;
 import com.bikerental.service.BookingService;
@@ -90,68 +86,31 @@ public class AdminController {
 		return adminService.getAllAdmin();
 	}
 	
-	@GetMapping(value = "adminProv")
+	@GetMapping(value = "admin-prov")
 	public List<Provider> getProvidersList(){
 		return adminService.getAllProvider();
 	}
 	
-	@PutMapping(value = "adminProv")
+	@PutMapping(value = "admin-prov")
 	public String updateProvider(@RequestBody Provider provider) {
 		adminService.modifyProvider(provider);			
 		return "success";
 	}
 	
-	@DeleteMapping(value = "adminProv/{id}")
+	@DeleteMapping(value = "admin-prov/{id}")
 	public String deleteProvider(@PathVariable long id) {
 		adminService.removeProvider(id);
 		return "success";
 	}
 	
-	@GetMapping(value = "adminBikes")
+	@GetMapping(value = "admin-bikes")
 	public List<Bike> getBikesList(){
 		return adminService.getAllBikes();
 	}
 	
-	@GetMapping(value = "adminBikeByStatus/{status}")
+	@GetMapping(value = "admin-bike-status/{status}")
 	public List<Bike> getAvailableBikesList(@PathVariable String status){
 		return bikeService.getAllBikesByStatus(status);
-	}
-	
-	@GetMapping(value = "adminBooking")
-	public List<Booking> getBookingList(){
-		return bookingService.getAllBooking();
-	}
-	
-	@GetMapping(value ="custbooking/{custId}")
-	public List<Booking> getCustBooking(@PathVariable long custId){
-		return bookingService.getByCustId(custId);
-	}
-	
-	@GetMapping(value = "bikeBooking/{bikeId}")
-	public List<Booking> getBikeBooking(@PathVariable long bikeId){
-		return bookingService.getByCustId(bikeId);
-	}
-	
-	@GetMapping(value="booking/{id}")
-	public Booking getBookingDetails(@PathVariable long id){
-		return bookingService.getByBookId(id);
-	}
-	
-	@GetMapping(value="provbooking/{provId}")
-	public List<Booking> getProvBooking(@PathVariable long provId)
-	{
-		return bookingService.getByProvId(provId);
-	} 
-	
-	@DeleteMapping(value="deletebooking/{id}")
-	public String deleteBooking(@PathVariable long id) {
-		bookingService.deleteBooking(id);
-		return "Sucess";
-	}
-	@PutMapping(value="updatebooking")
-	public String updateBooking(@RequestBody Booking book) {
-		bookingService.modifyBooking(book);
-		return "Sucess";
 	}
 	
 }

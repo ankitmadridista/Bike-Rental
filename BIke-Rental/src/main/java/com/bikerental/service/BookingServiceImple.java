@@ -12,12 +12,12 @@ import com.bikerental.repository.BookingRepository;
 @Service
 public class BookingServiceImple implements BookingService{
 	@Autowired
-	private BookingRepository bookRepo;
+	private BookingRepository bookingRepository;
 	
 	@Override
 	public List<Booking> getAllBooking() {
 		
-		Iterable<Booking> itr = bookRepo.findAll();
+		Iterable<Booking> itr = bookingRepository.findAll();
 		Iterator<Booking> it = itr.iterator();
 		List<Booking> li = new ArrayList<Booking>();
 		
@@ -27,16 +27,14 @@ public class BookingServiceImple implements BookingService{
 		return li;
 	}
 
-	
-
 	@Override
 	public Booking getByBookId(long id) {
-		return bookRepo.getOne(id);
+		return bookingRepository.getOne(id);
 	}
 
 	@Override
 	public List<Booking> getByCustId(long custId) {
-		Iterable<Booking> itr = bookRepo.findAllByCustId(custId);
+		Iterable<Booking> itr = bookingRepository.findAllByCustId(custId);
 		Iterator<Booking> it = itr.iterator();
 		List<Booking> li = new ArrayList<Booking>();
 		
@@ -49,7 +47,7 @@ public class BookingServiceImple implements BookingService{
 
 	@Override
 	public List<Booking> getByBikeId(long bikeId) {
-		Iterable<Booking> itr = bookRepo.findAllByBikeId(bikeId);
+		Iterable<Booking> itr = bookingRepository.findAllByBikeId(bikeId);
 		Iterator<Booking> it = itr.iterator();
 		List<Booking> li = new ArrayList<Booking>();
 		
@@ -61,7 +59,7 @@ public class BookingServiceImple implements BookingService{
 
 	@Override
 	public List<Booking> getByProvId(long provId) {
-		Iterable<Booking> itr = bookRepo.findAllByProvId(provId);
+		Iterable<Booking> itr = bookingRepository.findAllByProvId(provId);
 		Iterator<Booking> it = itr.iterator();
 		List<Booking> li = new ArrayList<Booking>();
 		
@@ -74,17 +72,27 @@ public class BookingServiceImple implements BookingService{
 
 	@Override
 	public void deleteBooking(long id) {
-		bookRepo.deleteById(id);
+		bookingRepository.deleteById(id);
 		
 	}
 	@Override
 	public void modifyBooking(Booking booking) {
-		bookRepo.save(booking);
+		bookingRepository.save(booking);
 	}
 
 	@Override
 	public Booking addBooking(Booking booking) {
-		return bookRepo.save(booking);
+		return bookingRepository.save(booking);
 	}
 
+	@Override
+	public void modifyBookingStatusToRejected(long bookingId) {
+		bookingRepository.updateBookingStatus("Rejected", bookingId);
+	}
+	
+	
+	@Override
+	public void modifyBookingStatusToBooked(long bookingId) {
+		bookingRepository.updateBookingStatus("Booked", bookingId);
+	}
 }

@@ -94,13 +94,13 @@ public class ProviderController {
 	
 	
 	//get all bookings by provId
-	@GetMapping(value="provBooking/ProvId/{provId}")
+	@GetMapping(value="prov-booking-provId/{provId}")
 	public List<Booking> getprovBooking(@PathVariable long provId){
 		return bookingService.getByProvId(provId);
 	} 
 	
 	//get all bookings by bikeId
-	@GetMapping(value = "provBooking/BikeId/{bikeId}")
+	@GetMapping(value = "prov-booking-bikeId/{bikeId}")
 	public List<Booking> getBikeBooking(@PathVariable long bikeId){
 		return bookingService.getByCustId(bikeId);
 	}
