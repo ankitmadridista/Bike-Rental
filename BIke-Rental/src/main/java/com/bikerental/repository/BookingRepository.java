@@ -18,7 +18,8 @@ public interface BookingRepository extends JpaRepository<Booking, Long> {
 	public List<Booking> findAllByProvId(long id);
 	
 	@Modifying
-	@Query("UPDATE booking u SET u.bookingStatus = ?1 where u.bookingId=?2")
+	@Query("UPDATE booking u SET u.bookStatus = ?1 where u.bookId=?2")
 	@Transactional
-	public void updateBookingStatus(String bookingStatus, long bookingId);
+	public void updateBookingStatus(String bookStatus, long bookId);
+	
 }

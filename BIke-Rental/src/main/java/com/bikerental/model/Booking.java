@@ -21,14 +21,14 @@ public class Booking {
 	int bookReadingAtStart;
 	int bookReadingAtEnd;
 	String bookPaymentStatus;
-	String bookingStatus;
+	String bookStatus;
 	float bookDepositAmount;
 	String bookFeedbackCustomer;
 	String bookFeedabackProvider;
 	public Booking() {
 	}
 	public Booking(long bookId, long provId, long bikeId, long custId, float bookChargesPerHours, int bookBillAmount,
-			int bookReadingAtStart, int bookReadingAtEnd, String bookPaymentStatus, String bookingStatus,
+			int bookReadingAtStart, int bookReadingAtEnd, String bookPaymentStatus, String bookStatus,
 			float bookDepositAmount, String bookFeedbackCustomer, String bookFeedabackProvider) {
 		super();
 		this.bookId = bookId;
@@ -40,7 +40,7 @@ public class Booking {
 		this.bookReadingAtStart = bookReadingAtStart;
 		this.bookReadingAtEnd = bookReadingAtEnd;
 		this.bookPaymentStatus = bookPaymentStatus;
-		this.bookingStatus = bookingStatus;
+		this.bookStatus = bookStatus;
 		this.bookDepositAmount = bookDepositAmount;
 		this.bookFeedbackCustomer = bookFeedbackCustomer;
 		this.bookFeedabackProvider = bookFeedabackProvider;
@@ -99,11 +99,11 @@ public class Booking {
 	public void setBookPaymentStatus(String bookPaymentStatus) {
 		this.bookPaymentStatus = bookPaymentStatus;
 	}
-	public String getBookingStatus() {
-		return bookingStatus;
+	public String getBookStatus() {
+		return bookStatus;
 	}
-	public void setBookingStatus(String bookingStatus) {
-		this.bookingStatus = bookingStatus;
+	public void setBookStatus(String bookStatus) {
+		this.bookStatus = bookStatus;
 	}
 	public float getBookDepositAmount() {
 		return bookDepositAmount;

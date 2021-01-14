@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.bikerental.model.Bike;
 import com.bikerental.repository.BikeRepository;
-import com.bikerental.repository.ProviderRepository;
 
 @Service
 public class BikeServiceImple implements BikeService {

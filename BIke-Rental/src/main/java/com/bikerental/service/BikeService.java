@@ -3,7 +3,6 @@ package com.bikerental.service;
 import java.util.List;
 
 import com.bikerental.model.Bike;
-import com.bikerental.model.Provider;
 
 public interface BikeService {
 	public Bike addBike(Bike bike);

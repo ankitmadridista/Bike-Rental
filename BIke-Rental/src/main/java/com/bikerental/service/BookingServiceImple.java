@@ -3,6 +3,7 @@ package com.bikerental.service;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,8 @@ public class BookingServiceImple implements BookingService{
 
 	@Override
 	public Booking getByBookId(long id) {
-		return bookingRepository.getOne(id);
+		Optional<Booking> opt =  bookingRepository.findById(id);
+		return opt.get();
 	}
 
 	@Override
@@ -37,7 +39,6 @@ public class BookingServiceImple implements BookingService{
 		Iterable<Booking> itr = bookingRepository.findAllByCustId(custId);
 		Iterator<Booking> it = itr.iterator();
 		List<Booking> li = new ArrayList<Booking>();
-		
 		while(it.hasNext()) {
 			li.add(it.next());
 		}
@@ -86,13 +87,13 @@ public class BookingServiceImple implements BookingService{
 	}
 
 	@Override
-	public void modifyBookingStatusToRejected(long bookingId) {
-		bookingRepository.updateBookingStatus("Rejected", bookingId);
+	public void modifyBookingStatusToRejected(long bookId) {
+		bookingRepository.updateBookingStatus("Rejected", bookId);
 	}
 	
 	
 	@Override
-	public void modifyBookingStatusToBooked(long bookingId) {
-		bookingRepository.updateBookingStatus("Booked", bookingId);
+	public void modifyBookingStatusToBooked(long bookId) {
+		bookingRepository.updateBookingStatus("Booked", bookId);
 	}
 }

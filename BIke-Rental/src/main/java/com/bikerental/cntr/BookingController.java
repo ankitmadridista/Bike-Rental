@@ -3,16 +3,22 @@ package com.bikerental.cntr;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.bikerental.model.Booking;
 import com.bikerental.service.BookingService;
 
+@CrossOrigin(origins = "*")
+@RestController
+@RequestMapping("/api")
 public class BookingController {
 	
 	@Autowired
@@ -47,17 +53,19 @@ public class BookingController {
 	@DeleteMapping(value="booking/{id}")
 	public String deleteBooking(@PathVariable long id) {
 		bookingService.deleteBooking(id);
-		return "Sucess";
+		return "Success";
 	}
 	@PutMapping(value="booking")
 	public String updateBooking(@RequestBody Booking book) {
 		bookingService.modifyBooking(book);
-		return "Sucess";
+		return "Success";
 	}
 	
 	@PostMapping(value ="booking")
 	public Booking addBooking(@RequestBody Booking booking) throws Exception {		
-			booking.setBookingStatus("Pending");
+			booking.setBookStatus("Pending");
+			booking.setBookPaymentStatus("Unpaid");
+			//System.out.println(booking.getBookingStatus());
 			return bookingService.addBooking(booking);		
 	}
 	
@@ -65,13 +73,13 @@ public class BookingController {
 	@PutMapping(value="update-booking-booked")
 	public String updateBookingStatusToBooked(@PathVariable long bookingId) {
 		bookingService.modifyBookingStatusToBooked(bookingId);
-		return "Sucess";
+		return "Success";
 	}
 	
 	//to update booking status from pending to rejected
 	@PutMapping(value="update-booking-rejected")
 	public String updateBookingStatusToRej(@PathVariable long bookingId) {
 		bookingService.modifyBookingStatusToRejected(bookingId);
-		return "Sucess";
+		return "Success";
 	}
 }
