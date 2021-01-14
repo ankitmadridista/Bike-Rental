@@ -17,5 +17,6 @@ public interface BookingService {
 	
 	public void modifyBookingStatusToRejected(long bookId);
 	public void modifyBookingStatusToBooked(long bookId);
+	public List<Booking> getAllRequestedBooking();
 	
 }

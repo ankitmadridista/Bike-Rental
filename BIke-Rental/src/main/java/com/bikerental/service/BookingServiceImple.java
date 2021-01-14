@@ -96,4 +96,9 @@ public class BookingServiceImple implements BookingService{
 	public void modifyBookingStatusToBooked(long bookId) {
 		bookingRepository.updateBookingStatus("Booked", bookId);
 	}
+
+	@Override
+	public List<Booking> getAllRequestedBooking() {
+		return bookingRepository.findAllByBookStatus("Pending");
+	}
 }

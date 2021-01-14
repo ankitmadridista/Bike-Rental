@@ -22,4 +22,6 @@ public interface BookingRepository extends JpaRepository<Booking, Long> {
 	@Transactional
 	public void updateBookingStatus(String bookStatus, long bookId);
 	
+	public List<Booking> findAllByBookStatus(String bookStatus);
+	
 }

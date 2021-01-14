@@ -82,4 +82,9 @@ public class BookingController {
 		bookingService.modifyBookingStatusToRejected(bookingId);
 		return "Success";
 	}
+	
+	@GetMapping(value="booking-req")
+	public List<Booking> getAllReqBookings(){
+		return bookingService.getAllRequestedBooking();
+	} 
 }
