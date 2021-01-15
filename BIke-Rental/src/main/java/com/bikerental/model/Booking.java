@@ -16,20 +16,29 @@ public class Booking {
 	long provId;
 	long bikeId;
 	long custId;
-	float bookChargesPerHours;
-	int bookBillAmount;
-	int bookReadingAtStart;
-	int bookReadingAtEnd;
+	double bookChargesPerHours;
+	double bookBillAmount;
+	double bookReadingAtStart;
+	double bookReadingAtEnd;
+	double bookDepositAmount;
+	
+	long bookStartTimeCalc;
+	long bookEndTimeCalc;
+	
+	String bookStartTimeCust;
+	String bookEndTimeCust;
 	String bookPaymentStatus;
 	String bookStatus;
-	float bookDepositAmount;
 	String bookFeedbackCustomer;
 	String bookFeedabackProvider;
+	
 	public Booking() {
+		
 	}
-	public Booking(long bookId, long provId, long bikeId, long custId, float bookChargesPerHours, int bookBillAmount,
-			int bookReadingAtStart, int bookReadingAtEnd, String bookPaymentStatus, String bookStatus,
-			float bookDepositAmount, String bookFeedbackCustomer, String bookFeedabackProvider) {
+	public Booking(long bookId, long provId, long bikeId, long custId, double bookChargesPerHours,
+			double bookBillAmount, double bookReadingAtStart, double bookReadingAtEnd, double bookDepositAmount,
+			long bookStartTimeCalc, long bookEndTimeCalc, String bookStartTimeCust, String bookEndTimeCust,
+			String bookPaymentStatus, String bookStatus, String bookFeedbackCustomer, String bookFeedabackProvider) {
 		super();
 		this.bookId = bookId;
 		this.provId = provId;
@@ -39,9 +48,13 @@ public class Booking {
 		this.bookBillAmount = bookBillAmount;
 		this.bookReadingAtStart = bookReadingAtStart;
 		this.bookReadingAtEnd = bookReadingAtEnd;
+		this.bookDepositAmount = bookDepositAmount;
+		this.bookStartTimeCalc = bookStartTimeCalc;
+		this.bookEndTimeCalc = bookEndTimeCalc;
+		this.bookStartTimeCust = bookStartTimeCust;
+		this.bookEndTimeCust = bookEndTimeCust;
 		this.bookPaymentStatus = bookPaymentStatus;
 		this.bookStatus = bookStatus;
-		this.bookDepositAmount = bookDepositAmount;
 		this.bookFeedbackCustomer = bookFeedbackCustomer;
 		this.bookFeedabackProvider = bookFeedabackProvider;
 	}
@@ -69,29 +82,59 @@ public class Booking {
 	public void setCustId(long custId) {
 		this.custId = custId;
 	}
-	public float getBookChargesPerHours() {
+	public double getBookChargesPerHours() {
 		return bookChargesPerHours;
 	}
-	public void setBookChargesPerHours(float bookChargesPerHours) {
+	public void setBookChargesPerHours(double bookChargesPerHours) {
 		this.bookChargesPerHours = bookChargesPerHours;
 	}
-	public int getBookBillAmount() {
+	public double getBookBillAmount() {
 		return bookBillAmount;
 	}
-	public void setBookBillAmount(int bookBillAmount) {
+	public void setBookBillAmount(double bookBillAmount) {
 		this.bookBillAmount = bookBillAmount;
 	}
-	public int getBookReadingAtStart() {
+	public double getBookReadingAtStart() {
 		return bookReadingAtStart;
 	}
-	public void setBookReadingAtStart(int bookReadingAtStart) {
+	public void setBookReadingAtStart(double bookReadingAtStart) {
 		this.bookReadingAtStart = bookReadingAtStart;
 	}
-	public int getBookReadingAtEnd() {
+	public double getBookReadingAtEnd() {
 		return bookReadingAtEnd;
 	}
-	public void setBookReadingAtEnd(int bookReadingAtEnd) {
+	public void setBookReadingAtEnd(double bookReadingAtEnd) {
 		this.bookReadingAtEnd = bookReadingAtEnd;
+	}
+	public double getBookDepositAmount() {
+		return bookDepositAmount;
+	}
+	public void setBookDepositAmount(double bookDepositAmount) {
+		this.bookDepositAmount = bookDepositAmount;
+	}
+	public long getBookStartTimeCalc() {
+		return bookStartTimeCalc;
+	}
+	public void setBookStartTimeCalc(long bookStartTimeCalc) {
+		this.bookStartTimeCalc = bookStartTimeCalc;
+	}
+	public long getBookEndTimeCalc() {
+		return bookEndTimeCalc;
+	}
+	public void setBookEndTimeCalc(long bookEndTimeCalc) {
+		this.bookEndTimeCalc = bookEndTimeCalc;
+	}
+	public String getBookStartTimeCust() {
+		return bookStartTimeCust;
+	}
+	public void setBookStartTimeCust(String bookStartTimeCust) {
+		this.bookStartTimeCust = bookStartTimeCust;
+	}
+	public String getBookEndTimeCust() {
+		return bookEndTimeCust;
+	}
+	public void setBookEndTimeCust(String bookEndTimeCust) {
+		this.bookEndTimeCust = bookEndTimeCust;
 	}
 	public String getBookPaymentStatus() {
 		return bookPaymentStatus;
@@ -105,12 +148,6 @@ public class Booking {
 	public void setBookStatus(String bookStatus) {
 		this.bookStatus = bookStatus;
 	}
-	public float getBookDepositAmount() {
-		return bookDepositAmount;
-	}
-	public void setBookDepositAmount(float bookDepositAmount) {
-		this.bookDepositAmount = bookDepositAmount;
-	}
 	public String getBookFeedbackCustomer() {
 		return bookFeedbackCustomer;
 	}
@@ -123,5 +160,7 @@ public class Booking {
 	public void setBookFeedabackProvider(String bookFeedabackProvider) {
 		this.bookFeedabackProvider = bookFeedabackProvider;
 	}
+	
+	
 		
 }

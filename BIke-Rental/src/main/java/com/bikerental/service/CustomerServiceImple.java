@@ -71,4 +71,16 @@ public class CustomerServiceImple implements CustomerService{
 		return customerRepository.findByCustEmail(custEmail);
 	}
 
+	@Override
+	public String modifyCustStatusToFalse(boolean status, long custId) {
+		customerRepository.updateCustStatus(status, custId);
+		return "Success";
+	}
+	
+	@Override
+	public String modifyCustStatusToTrue(boolean status, long custId) {
+		customerRepository.updateCustStatus(status, custId);
+		return "Success";
+	}
+
 }

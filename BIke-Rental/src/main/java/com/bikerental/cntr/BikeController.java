@@ -93,6 +93,21 @@ public class BikeController {
 		return "success";
 	}
 	
+	//reserve bike
+	@GetMapping(value = "bikes-update-reserved/{bikeId}")
+	public String updateStatusToReserve(@PathVariable long bikeId) {
+		//System.out.println(bikeId);
+		bikeService.modifyBikeStatusToReserve(bikeId);	
+		return "success";
+	}
+	
+	@GetMapping(value = "bikes-update-booked/{bikeId}")
+	public String updateStatusToBooked(@PathVariable long bikeId) {
+		//System.out.println(bikeId);
+		bikeService.modifyBikeStatusToBooked(bikeId);	
+		return "success";
+	}
+	
 	
 	//test
 //	@DeleteMapping(value = "bikesProvId/{id}")

@@ -16,4 +16,7 @@ public interface BikeService {
 	public List<Bike> getAllBikesByStatus(String status);
 	public void modifyBikeStatusToAvailable(long bikeId);
 	public void modifyBikeStatusToRejected(long bikeId);
+	public void modifyBikeStatusToReserve(long bikeId);
+	public void modifyBikeStatusToBooked(long bikeId);	
+	
 }	

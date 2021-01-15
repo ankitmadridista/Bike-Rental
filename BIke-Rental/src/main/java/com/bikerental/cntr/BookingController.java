@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bikerental.model.Booking;
+import com.bikerental.service.BikeService;
 import com.bikerental.service.BookingService;
+import com.bikerental.service.CustomerService;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -23,6 +25,12 @@ public class BookingController {
 	
 	@Autowired
 	private BookingService bookingService;
+	
+	@Autowired
+	private BikeService bikeService;
+	
+	@Autowired
+	private CustomerService customerService;
 	
 	@GetMapping(value = "admin-booking")
 	public List<Booking> getBookingList(){
@@ -61,30 +69,50 @@ public class BookingController {
 		return "Success";
 	}
 	
+	//cust booking req
 	@PostMapping(value ="booking")
 	public Booking addBooking(@RequestBody Booking booking) throws Exception {		
+			//customerService.modifyCustStatusToTrue(true, booking.getCustId());
 			booking.setBookStatus("Pending");
 			booking.setBookPaymentStatus("Unpaid");
+			long bikeId = booking.getBikeId();
+			bikeService.modifyBikeStatusToReserve(bikeId);
 			//System.out.println(booking.getBookingStatus());
 			return bookingService.addBooking(booking);		
 	}
 	
 	//to update booking status from pending to booked
-	@PutMapping(value="update-booking-booked")
-	public String updateBookingStatusToBooked(@PathVariable long bookingId) {
-		bookingService.modifyBookingStatusToBooked(bookingId);
+	@PostMapping(value="update-booking-accepted")
+	public String updateBookingStatusToAccepted(@RequestBody Booking booking ) {
+		bikeService.modifyBikeStatusToReserve(booking.getBikeId());
+		bookingService.modifyBookingStatusToAccepted(booking.getBookId());
 		return "Success";
 	}
 	
 	//to update booking status from pending to rejected
-	@PutMapping(value="update-booking-rejected")
-	public String updateBookingStatusToRej(@PathVariable long bookingId) {
-		bookingService.modifyBookingStatusToRejected(bookingId);
+	@PostMapping(value="update-booking-rejected")
+	public String updateBookingStatusToRej(@RequestBody Booking booking) {
+		bikeService.modifyBikeStatusToAvailable(booking.getBikeId());
+		bookingService.modifyBookingStatusToRejected(booking.getBookId());
 		return "Success";
 	}
+	
 	
 	@GetMapping(value="booking-req")
 	public List<Booking> getAllReqBookings(){
 		return bookingService.getAllRequestedBooking();
 	} 
+	
+	@GetMapping(value="booking-acc")
+	public List<Booking> getAllAccBookings(){
+		return bookingService.getAllAcceptedBooking();
+	} 
+	
+	@GetMapping(value="booking-act")
+	public List<Booking> getAllActBookings(){
+		return bookingService.getAllActiveBooking();
+	} 
+	
+	
+	
 }

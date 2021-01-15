@@ -15,6 +15,7 @@ public interface CustomerService {
 	public List<Customer> getAll();
 	public Customer findCustomerEmailAndPassword(String custEmail, String custPassword);
 	public Customer findCustomerEmail(String custEmail);
-	
+	public String modifyCustStatusToFalse(boolean status, long custId);
+	public String modifyCustStatusToTrue(boolean status, long custId);
 
 }

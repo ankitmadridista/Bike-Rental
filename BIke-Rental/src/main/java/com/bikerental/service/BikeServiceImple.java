@@ -79,10 +79,22 @@ public class BikeServiceImple implements BikeService {
 	}
 
 	@Override
+	public void modifyBikeStatusToReserve(long bikeId) {
+		bikeRepository.updateBikeStatus("Reserve",bikeId);
+	}
+	
+	@Override
+	public void modifyBikeStatusToBooked(long bikeId) {
+		bikeRepository.updateBikeStatus("Booked",bikeId);
+	}
+
+	
+	@Override
 	public void removeBikeByProvId(long ProvId) {
 		bikeRepository.deleteByProvId(ProvId);
 		
 	}
 
+	
 
 }

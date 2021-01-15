@@ -28,20 +28,21 @@ public class Customer {
 	String custCity;
 	String custState;
 	String custPin;
+	boolean custIsActive;
+	
 	public Customer() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 	
-	public Customer(long custId, String custDrivingLicNo,String custEmail, String custPassword, String custFname, String custDateOfBirth,
-			int custAge, String custContactNo, String custAadhar, String custAddress, String custCity, String custState,
-			String custPin) {
+	public Customer(long custId, String custEmail, String custPassword, String custFname, String custDateOfBirth,
+			String custDrivingLicNo, int custAge, String custContactNo, String custAadhar, String custAddress,
+			String custCity, String custState, String custPin, boolean custIsActive) {
 		super();
 		this.custId = custId;
 		this.custEmail = custEmail;
 		this.custPassword = custPassword;
 		this.custFname = custFname;
 		this.custDateOfBirth = custDateOfBirth;
+		this.custDrivingLicNo = custDrivingLicNo;
 		this.custAge = custAge;
 		this.custContactNo = custContactNo;
 		this.custAadhar = custAadhar;
@@ -49,7 +50,7 @@ public class Customer {
 		this.custCity = custCity;
 		this.custState = custState;
 		this.custPin = custPin;
-		this.custDrivingLicNo = custDrivingLicNo;
+		this.custIsActive = custIsActive;
 	}
 
 	public long getCustId() {
@@ -58,16 +59,6 @@ public class Customer {
 	public void setCustId(long custId) {
 		this.custId = custId;
 	}
-	
-	
-	public String getcustDrivingLicNo() {
-		return custDrivingLicNo;
-	}
-	public void setcustDrivingLicNo(String custDrivingLicNo) {
-		this.custDrivingLicNo = custDrivingLicNo;
-	}
-	
-	
 	public String getCustEmail() {
 		return custEmail;
 	}
@@ -86,11 +77,17 @@ public class Customer {
 	public void setCustFname(String custFname) {
 		this.custFname = custFname;
 	}
-	public String getcustDateOfBirth() {
+	public String getCustDateOfBirth() {
 		return custDateOfBirth;
 	}
-	public void setcustDateOfBirth(String custDateOfBirth) {
+	public void setCustDateOfBirth(String custDateOfBirth) {
 		this.custDateOfBirth = custDateOfBirth;
+	}
+	public String getCustDrivingLicNo() {
+		return custDrivingLicNo;
+	}
+	public void setCustDrivingLicNo(String custDrivingLicNo) {
+		this.custDrivingLicNo = custDrivingLicNo;
 	}
 	public int getCustAge() {
 		return custAge;
@@ -98,10 +95,10 @@ public class Customer {
 	public void setCustAge(int custAge) {
 		this.custAge = custAge;
 	}
-	public String getcustContactNo() {
+	public String getCustContactNo() {
 		return custContactNo;
 	}
-	public void setcustContactNo(String custContactNo) {
+	public void setCustContactNo(String custContactNo) {
 		this.custContactNo = custContactNo;
 	}
 	public String getCustAadhar() {
@@ -134,8 +131,11 @@ public class Customer {
 	public void setCustPin(String custPin) {
 		this.custPin = custPin;
 	}
+	public boolean isCustIsActive() {
+		return custIsActive;
+	}
+	public void setCustIsActive(boolean custIsActive) {
+		this.custIsActive = custIsActive;
+	}
 	
-	
-	
-
 }

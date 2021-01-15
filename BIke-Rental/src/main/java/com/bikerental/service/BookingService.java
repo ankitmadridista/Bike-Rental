@@ -16,7 +16,11 @@ public interface BookingService {
 	public Booking addBooking(Booking booking);	
 	
 	public void modifyBookingStatusToRejected(long bookId);
-	public void modifyBookingStatusToBooked(long bookId);
+	public void modifyBookingStatusToAccepted(long bookId);
 	public List<Booking> getAllRequestedBooking();
+	public List<Booking> getAllAcceptedBooking();
+	public List<Booking> getAllActiveBooking();
+	
+	
 	
 }
