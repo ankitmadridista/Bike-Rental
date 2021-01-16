@@ -23,19 +23,19 @@ public class Customer {
 	int custAge;
 	String custContactNo;
 	String custAadhar;
-	//String provRcBookNo;
 	String custAddress;
 	String custCity;
 	String custState;
 	String custPin;
 	boolean custIsActive;
+	double custWallet;
 	
 	public Customer() {
 	}
 	
 	public Customer(long custId, String custEmail, String custPassword, String custFname, String custDateOfBirth,
 			String custDrivingLicNo, int custAge, String custContactNo, String custAadhar, String custAddress,
-			String custCity, String custState, String custPin, boolean custIsActive) {
+			String custCity, String custState, String custPin, boolean custIsActive, double custWallet) {
 		super();
 		this.custId = custId;
 		this.custEmail = custEmail;
@@ -51,7 +51,9 @@ public class Customer {
 		this.custState = custState;
 		this.custPin = custPin;
 		this.custIsActive = custIsActive;
+		this.custWallet = custWallet;
 	}
+
 
 	public long getCustId() {
 		return custId;
@@ -136,6 +138,14 @@ public class Customer {
 	}
 	public void setCustIsActive(boolean custIsActive) {
 		this.custIsActive = custIsActive;
+	}
+
+	public double getCustWallet() {
+		return custWallet;
+	}
+
+	public void setCustWallet(double custWallet) {
+		this.custWallet = custWallet;
 	}
 	
 }

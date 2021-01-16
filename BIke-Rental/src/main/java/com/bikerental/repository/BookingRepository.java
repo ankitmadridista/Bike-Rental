@@ -24,4 +24,12 @@ public interface BookingRepository extends JpaRepository<Booking, Long> {
 	
 	public List<Booking> findAllByBookStatus(String bookStatus);
 	
+	
+	@Query("Select u from booking u where u.bookPaymentStatus = ?1 AND u.custId=?2")
+	public List<Booking> findAllPaidByCustId(String bookPaymentStatus, long custId);
+	
+	@Query("Select u from booking u where u.bookStatus != ?1 and u.bookStatus != ?2 and u.custId = ?3")
+	public Booking findCustCurrBookByBookId(String a, String b, long custId);
+	
+	
 }

@@ -21,6 +21,7 @@ public interface BookingService {
 	public List<Booking> getAllAcceptedBooking();
 	public List<Booking> getAllActiveBooking();
 	
-	
+	public List<Booking> getAllPaidByCustId(long custId);
+	public Booking getCustBookByBookId(long custId);
 	
 }

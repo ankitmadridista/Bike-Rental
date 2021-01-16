@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bikerental.model.Booking;
+import com.bikerental.model.Customer;
 import com.bikerental.service.BikeService;
 import com.bikerental.service.BookingService;
 import com.bikerental.service.CustomerService;
@@ -65,14 +66,36 @@ public class BookingController {
 	}
 	@PutMapping(value="booking")
 	public String updateBooking(@RequestBody Booking book) {
-		bookingService.modifyBooking(book);
+		if( book.getBookBillAmount() < 0 ) {	
+			Customer obj = customerService.getCustomer(book.getCustId());
+			double newWallet = obj.getCustWallet() + Math.abs(book.getBookBillAmount()) ;
+			book.setBookPaymentStatus("Paid");
+			customerService.addRefund( newWallet, book.getCustId());
+			book.setBookBillAmount(book.getBookDepositAmount() + book.getBookBillAmount());
+			bookingService.modifyBooking(book);
+			customerService.modifyCustStatusToFalse(book.getCustId());
+		}
+		else if( book.getBookBillAmount() == 0 && book.getBookStatus() == "Completed") {
+			//System.out.println("in this");
+			book.setBookPaymentStatus("Paid");
+			bookingService.modifyBooking(book);
+			customerService.modifyCustStatusToFalse(book.getCustId());
+		}
+		else if( book.getBookStatus() == "Completed" ) {
+			bikeService.modifyBikeStatusToAvailable(book.getBikeId());
+			bookingService.modifyBooking(book);
+		}
+		else {
+			bookingService.modifyBooking(book);
+		}
+		
 		return "Success";
 	}
 	
-	//cust booking req
+	//cust booking req -- added cust status method
 	@PostMapping(value ="booking")
 	public Booking addBooking(@RequestBody Booking booking) throws Exception {		
-			//customerService.modifyCustStatusToTrue(true, booking.getCustId());
+			customerService.modifyCustStatusToTrue(booking.getCustId());
 			booking.setBookStatus("Pending");
 			booking.setBookPaymentStatus("Unpaid");
 			long bikeId = booking.getBikeId();
@@ -84,7 +107,7 @@ public class BookingController {
 	//to update booking status from pending to booked
 	@PostMapping(value="update-booking-accepted")
 	public String updateBookingStatusToAccepted(@RequestBody Booking booking ) {
-		bikeService.modifyBikeStatusToReserve(booking.getBikeId());
+		//bikeService.modifyBikeStatusToReserve(booking.getBikeId());
 		bookingService.modifyBookingStatusToAccepted(booking.getBookId());
 		return "Success";
 	}
@@ -94,6 +117,7 @@ public class BookingController {
 	public String updateBookingStatusToRej(@RequestBody Booking booking) {
 		bikeService.modifyBikeStatusToAvailable(booking.getBikeId());
 		bookingService.modifyBookingStatusToRejected(booking.getBookId());
+		customerService.modifyCustStatusToFalse(booking.getCustId());
 		return "Success";
 	}
 	
@@ -113,6 +137,15 @@ public class BookingController {
 		return bookingService.getAllActiveBooking();
 	} 
 	
+	//get paid bookings by custid
+	@GetMapping(value="cust-paid-booking/{custId}")
+	public List<Booking> getCustPaidBookingsByCustId(@PathVariable long custId){
+		return bookingService.getAllPaidByCustId(custId);
+	} 
 	
+	@GetMapping(value = "cust-curr-booking/{custId}")
+	public Booking getCustCurrBookingById(@PathVariable long custId){
+		return bookingService.getCustBookByBookId(custId);
+	}
 	
 }

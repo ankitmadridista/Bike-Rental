@@ -72,15 +72,21 @@ public class CustomerServiceImple implements CustomerService{
 	}
 
 	@Override
-	public String modifyCustStatusToFalse(boolean status, long custId) {
-		customerRepository.updateCustStatus(status, custId);
+	public String modifyCustStatusToFalse(long custId) {
+		customerRepository.updateCustStatusToTrue(false, custId);
 		return "Success";
 	}
 	
 	@Override
-	public String modifyCustStatusToTrue(boolean status, long custId) {
-		customerRepository.updateCustStatus(status, custId);
+	public String modifyCustStatusToTrue(long custId) {
+		customerRepository.updateCustStatusToFalse(true, custId);
 		return "Success";
+	}
+
+	@Override
+	public void addRefund(double refund, long custId) {
+		customerRepository.insertRefund(refund, custId);
+		
 	}
 
 }

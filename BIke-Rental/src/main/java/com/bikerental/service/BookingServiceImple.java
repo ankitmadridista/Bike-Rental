@@ -111,4 +111,14 @@ public class BookingServiceImple implements BookingService{
 	public List<Booking> getAllActiveBooking() {
 		return bookingRepository.findAllByBookStatus("Active");
 	}
+
+	@Override
+	public List<Booking> getAllPaidByCustId(long custId) {
+		return bookingRepository.findAllPaidByCustId("Paid", custId);
+	}
+
+	@Override
+	public Booking getCustBookByBookId(long custId) {
+		return bookingRepository.findCustCurrBookByBookId("Rejected", "Completed", custId);
+	}
 }

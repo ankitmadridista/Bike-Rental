@@ -21,6 +21,7 @@ public class Booking {
 	double bookReadingAtStart;
 	double bookReadingAtEnd;
 	double bookDepositAmount;
+	double bookInitialFuelCost; 
 	
 	long bookStartTimeCalc;
 	long bookEndTimeCalc;
@@ -35,11 +36,13 @@ public class Booking {
 	public Booking() {
 		
 	}
+	
 	public Booking(long bookId, long provId, long bikeId, long custId, double bookChargesPerHours,
 			double bookBillAmount, double bookReadingAtStart, double bookReadingAtEnd, double bookDepositAmount,
-			long bookStartTimeCalc, long bookEndTimeCalc, String bookStartTimeCust, String bookEndTimeCust,
-			String bookPaymentStatus, String bookStatus, String bookFeedbackCustomer, String bookFeedabackProvider) {
-		super();
+			double bookInitialFuelCost, long bookStartTimeCalc, long bookEndTimeCalc, String bookStartTimeCust,
+			String bookEndTimeCust, String bookPaymentStatus, String bookStatus, String bookFeedbackCustomer,
+			String bookFeedabackProvider) {
+		
 		this.bookId = bookId;
 		this.provId = provId;
 		this.bikeId = bikeId;
@@ -49,6 +52,7 @@ public class Booking {
 		this.bookReadingAtStart = bookReadingAtStart;
 		this.bookReadingAtEnd = bookReadingAtEnd;
 		this.bookDepositAmount = bookDepositAmount;
+		this.bookInitialFuelCost = bookInitialFuelCost;
 		this.bookStartTimeCalc = bookStartTimeCalc;
 		this.bookEndTimeCalc = bookEndTimeCalc;
 		this.bookStartTimeCust = bookStartTimeCust;
@@ -58,6 +62,7 @@ public class Booking {
 		this.bookFeedbackCustomer = bookFeedbackCustomer;
 		this.bookFeedabackProvider = bookFeedabackProvider;
 	}
+
 	public long getBookId() {
 		return bookId;
 	}
@@ -87,6 +92,13 @@ public class Booking {
 	}
 	public void setBookChargesPerHours(double bookChargesPerHours) {
 		this.bookChargesPerHours = bookChargesPerHours;
+	}
+	
+	public double getBookInitialFuelCost() {
+		return bookInitialFuelCost;
+	}
+	public void setBookInitialFuelCost(double bookInitialFuelCost) {
+		this.bookInitialFuelCost = bookInitialFuelCost;
 	}
 	public double getBookBillAmount() {
 		return bookBillAmount;

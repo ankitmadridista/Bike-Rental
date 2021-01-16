@@ -96,5 +96,7 @@ public class CustomerController {
 		return bikeService.getAllBikesByStatus(status);
 	}
 	
-
+	
+	
+	
 }

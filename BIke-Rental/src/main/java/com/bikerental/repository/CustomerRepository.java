@@ -18,8 +18,18 @@ public interface CustomerRepository extends JpaRepository <Customer, Long> {
 	
 	//@Query("UPDATE booking u SET u.bookStatus = ?1 where u.bookId=?2")
 	@Modifying
-	@Query("update customer c set c.custIsActive = :?1 where c.custId=?2")
+	@Query("update customer c set c.custIsActive = ?1 where c.custId=?2")
 	@Transactional
-	public String updateCustStatus(boolean status, long custId); 
+	public void updateCustStatusToTrue(boolean status, long custId); 
+	
+	@Modifying
+	@Query("update customer c set c.custIsActive = ?1 where c.custId=?2")
+	@Transactional
+	public void updateCustStatusToFalse(boolean status, long custId); 
+	
+	@Modifying
+	@Query("update customer c set c.custWallet = ?1 where c.custId=?2")
+	@Transactional
+	public void insertRefund(double refund, long custId);
 
 }
