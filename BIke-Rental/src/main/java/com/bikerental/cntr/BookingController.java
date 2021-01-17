@@ -76,14 +76,14 @@ public class BookingController {
 			customerService.modifyCustStatusToFalse(book.getCustId());
 		}
 		else if( book.getBookBillAmount() == 0 && book.getBookStatus() == "Completed") {
-			//System.out.println("in this");
 			book.setBookPaymentStatus("Paid");
 			bookingService.modifyBooking(book);
 			customerService.modifyCustStatusToFalse(book.getCustId());
 		}
-		else if( book.getBookStatus() == "Completed" ) {
+		else if( book.getBookStatus() == "Completed" && book.getBookPaymentStatus() == "Paid" ) {
 			bikeService.modifyBikeStatusToAvailable(book.getBikeId());
 			bookingService.modifyBooking(book);
+			customerService.modifyCustStatusToFalse(book.getCustId());
 		}
 		else {
 			bookingService.modifyBooking(book);
@@ -146,6 +146,11 @@ public class BookingController {
 	@GetMapping(value = "cust-curr-booking/{custId}")
 	public Booking getCustCurrBookingById(@PathVariable long custId){
 		return bookingService.getCustBookByBookId(custId);
+	}
+	
+	@GetMapping(value = "cust-book-pay/{custId}")
+	public Booking getCustBookPay(@PathVariable long custId){
+		return bookingService.getCustBookToPay(custId);
 	}
 	
 }

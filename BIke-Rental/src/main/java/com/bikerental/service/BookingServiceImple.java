@@ -119,6 +119,11 @@ public class BookingServiceImple implements BookingService{
 
 	@Override
 	public Booking getCustBookByBookId(long custId) {
-		return bookingRepository.findCustCurrBookByBookId("Rejected", "Completed", custId);
+		return bookingRepository.findCustCurrBookByBookId("Completed", "Rejected", custId);
+	}
+
+	@Override
+	public Booking getCustBookToPay(long custId) {
+		return bookingRepository.findCustBookToPay(0, "Unpaid", custId);
 	}
 }
