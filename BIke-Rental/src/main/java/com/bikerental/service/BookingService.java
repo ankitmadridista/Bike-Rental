@@ -12,7 +12,7 @@ public interface BookingService {
 	public List<Booking> getByBikeId(long bikeId);
 	public List<Booking> getByProvId(long provId);
 	public void deleteBooking(long id);
-	public void modifyBooking(Booking booking);
+	public Booking modifyBooking(Booking booking);
 	public Booking addBooking(Booking booking);	
 	
 	public void modifyBookingStatusToRejected(long bookId);

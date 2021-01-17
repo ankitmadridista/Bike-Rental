@@ -77,8 +77,8 @@ public class BookingServiceImple implements BookingService{
 		
 	}
 	@Override
-	public void modifyBooking(Booking booking) {
-		bookingRepository.save(booking);
+	public Booking modifyBooking(Booking booking) {
+		return bookingRepository.save(booking);
 	}
 
 	@Override

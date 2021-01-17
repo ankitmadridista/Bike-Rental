@@ -65,31 +65,31 @@ public class BookingController {
 		return "Success";
 	}
 	@PutMapping(value="booking")
-	public String updateBooking(@RequestBody Booking book) {
+	public Booking updateBooking(@RequestBody Booking book) {
 		if( book.getBookBillAmount() < 0 ) {	
 			Customer obj = customerService.getCustomer(book.getCustId());
 			double newWallet = obj.getCustWallet() + Math.abs(book.getBookBillAmount()) ;
 			book.setBookPaymentStatus("Paid");
 			customerService.addRefund( newWallet, book.getCustId());
 			book.setBookBillAmount(book.getBookDepositAmount() + book.getBookBillAmount());
-			bookingService.modifyBooking(book);
 			customerService.modifyCustStatusToFalse(book.getCustId());
+			return bookingService.modifyBooking(book); 
 		}
-		else if( book.getBookBillAmount() == 0 && book.getBookStatus() == "Completed") {
+		else if( book.getBookBillAmount() == 0 && book.getBookStatus().equals("Completed") ) {
 			book.setBookPaymentStatus("Paid");
-			bookingService.modifyBooking(book);
 			customerService.modifyCustStatusToFalse(book.getCustId());
+			return bookingService.modifyBooking(book);
 		}
-		else if( book.getBookStatus() == "Completed" && book.getBookPaymentStatus() == "Paid" ) {
+		else if( book.getBookStatus().equals("Completed") && book.getBookPaymentStatus().equals("Paid") ) {
 			bikeService.modifyBikeStatusToAvailable(book.getBikeId());
 			bookingService.modifyBooking(book);
 			customerService.modifyCustStatusToFalse(book.getCustId());
+			return bookingService.modifyBooking(book);
 		}
 		else {
-			bookingService.modifyBooking(book);
+			return bookingService.modifyBooking(book);
+			
 		}
-		
-		return "Success";
 	}
 	
 	//cust booking req -- added cust status method
