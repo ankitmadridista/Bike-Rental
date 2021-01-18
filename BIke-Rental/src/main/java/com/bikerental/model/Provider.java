@@ -26,6 +26,31 @@ public class Provider {
 	String provCity;
 	String provState;
 	String provPin;
+	double provWallet;
+	
+	public Provider() {
+	}
+	
+	public Provider(long provId, String provEmail, String provPassword, String provFname, String provDateOfBirth,
+			int provAge, String provContactNo, String provAadhar, String provAddress, String provCity, String provState,
+			String provPin, double provWallet) {
+		super();
+		this.provId = provId;
+		this.provEmail = provEmail;
+		this.provPassword = provPassword;
+		this.provFname = provFname;
+		this.provDateOfBirth = provDateOfBirth;
+		this.provAge = provAge;
+		this.provContactNo = provContactNo;
+		this.provAadhar = provAadhar;
+		this.provAddress = provAddress;
+		this.provCity = provCity;
+		this.provState = provState;
+		this.provPin = provPin;
+		this.provWallet = provWallet;
+	}
+
+
 	public String getProvEmail() {
 		return provEmail;
 	}
@@ -78,10 +103,7 @@ public class Provider {
 		this.provState = provState;
 	}
 	
-	public Provider() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	
 	public long getProvId() {
 		return provId;
 	}
@@ -107,25 +129,14 @@ public class Provider {
 	public void setProvPin(String provPin) {
 		this.provPin = provPin;
 	}
-	public Provider(long provId, String provEmail, String provPassword, String provFname, String provDateOfBirth,
-			int provAge, String provContactNo, String provAadhar, String provAddress,
-			String provCity, String provState, String provPin) {
-		super();
-		this.provId = provId;
-		this.provEmail = provEmail;
-		this.provPassword = provPassword;
-		this.provFname = provFname;
-		this.provDateOfBirth = provDateOfBirth;
-		this.provAge = provAge;
-		this.provContactNo = provContactNo;
-		this.provAadhar = provAadhar;
-		this.provAddress = provAddress;
-		this.provCity = provCity;
-		this.provState = provState;
-		this.provPin = provPin;
+
+	public double getProvWallet() {
+		return provWallet;
 	}
 
-	
+	public void setProvWallet(double provWallet) {
+		this.provWallet = provWallet;
+	}
 	
 	
 }
