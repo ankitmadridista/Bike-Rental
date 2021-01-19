@@ -20,7 +20,7 @@ public class SendEmailService {
 		simpleMailMessage.setSubject(topic);
 		simpleMailMessage.setText(body);
 		javaMailSender.send(simpleMailMessage);
-		System.out.println("send mail...");
+		System.out.println("mail sent...");
 		
 	}
 

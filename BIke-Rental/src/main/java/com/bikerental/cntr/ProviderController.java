@@ -123,4 +123,43 @@ public class ProviderController {
 	public List<Booking> getBikeBooking(@PathVariable long bikeId){
 		return bookingService.getByCustId(bikeId);
 	}
+	
+	@PostMapping(value = "prov-link-mail")
+	public Provider sendLinkOnMail(@RequestBody Provider provider) throws Exception {
+		System.out.println(provider.getProvEmail());
+		Provider provObj = providerService.findProviderEmail(provider.getProvEmail());
+		if( provObj == null ) {
+			throw new Exception("Email Id is not valid");
+		}
+		
+		String to = provObj.getProvEmail();
+		String body = "Hello ...!!! " + provObj.getProvFname() + " click on this link to set a new password http://localhost:4200/prov-reset-pass-form" ;
+		String topic = "Reset Password";
+		
+		sendEmailService.sendEmail(to, body, topic);
+		
+		return provObj;	 
+	}
+	
+	
+	@PostMapping(value = "prov-reset-pass")
+	public Provider resetPassword(@RequestBody Provider provider) throws Exception {
+		
+		System.out.println(provider.getProvEmail());
+		String email = provider.getProvEmail();
+		String password = provider.getProvPassword();		
+		
+		Provider provObj = providerService.findProviderEmail(email);
+		if( provObj == null ) {
+			throw new Exception("Invalid Email Id");		
+		}
+		
+		String encPassword = providerService.encoder(password);
+		
+		if( email != null && password != null )
+			provObj.setProvPassword(encPassword);
+		
+		providerService.modifyProvider(provObj);
+		return provObj;
+	}
 }

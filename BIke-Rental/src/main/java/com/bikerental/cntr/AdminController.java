@@ -50,7 +50,7 @@ public class AdminController {
 			}					
 		}
 		else {
-			throw new Exception("null BikeNo");
+			throw new Exception("null");
 		}
 		
 		String to = admin.getAdminEmail();
