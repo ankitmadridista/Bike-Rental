@@ -3,6 +3,7 @@ package com.bikerental.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.bikerental.model.Admin;
@@ -90,7 +91,20 @@ public class AdminServiceImple implements AdminService {
 //		System.out.println("SQL "+sql);
 //		jdbcTemplate.execute(sql);
 //	}
+		
+	@Override
+	public String encoder(String password) {
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String encodedPassword = passwordEncoder.encode(password);
+		return encodedPassword;	
+	}
 	
+	@Override
+	public boolean decoder(String password, String encoded) {
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		boolean isPasswordMatch = passwordEncoder.matches(password, encoded);
+		return isPasswordMatch;
+	}
 	
 
 }

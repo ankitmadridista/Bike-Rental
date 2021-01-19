@@ -18,6 +18,7 @@ import com.bikerental.model.Provider;
 import com.bikerental.service.BikeService;
 import com.bikerental.service.BookingService;
 import com.bikerental.service.ProviderService;
+import com.bikerental.service.SendEmailService;
 
 //@CrossOrigin(origins = "http://localhost:4200")
 @CrossOrigin(origins = "*")
@@ -34,11 +35,20 @@ public class ProviderController {
 	@Autowired
 	private BookingService bookingService;
 	
+	@Autowired
+	private SendEmailService sendEmailService;
+	
 	@PostMapping(value = "providers")
 	public Provider addProv(@RequestBody Provider provider) throws Exception {
-		System.out.println("DOB: " + provider.getProvDateOfBirth());
+		//System.out.println("DOB: " + provider.getProvDateOfBirth());
 		String tempEmail = provider.getProvEmail();
 		System.out.println("email: "+tempEmail);
+		
+		String pwd = provider.getProvPassword();
+		
+		provider.setProvPassword(providerService.encoder(pwd));
+		System.out.println(provider.getProvPassword());
+		
 		if( tempEmail != null && !"".equals(tempEmail)) {
 			Provider providerObj = providerService.findProviderEmail(tempEmail);
 			if( providerObj != null ) {
@@ -48,6 +58,13 @@ public class ProviderController {
 		else {
 			throw new Exception("null email");
 		}
+		
+		String to = provider.getProvEmail();
+		String body = "Thanx ...!!! " + provider.getProvFname() + " You have successfully registered with us.";
+		String topic = "Registration successfull";
+		
+		sendEmailService.sendEmail(to, body, topic);
+		
 		return providerService.addProvider(provider);		
 	}
 
@@ -82,11 +99,13 @@ public class ProviderController {
 	public Provider checkProv(@RequestBody Provider provider) throws Exception {
 		String email = provider.getProvEmail();
 		String password = provider.getProvPassword();
+		String pwdEncode = providerService.encoder(password);
+		System.out.println(pwdEncode);
 		Provider provObj = null;
 		if( email != null && password != null ) {
-			provObj = providerService.findProviderEmailAndPassword(email, password);
+			provObj = providerService.findProviderEmail(email);
 		}
-		if( provObj == null ) {
+		if( !providerService.decoder(password, provObj.getProvPassword()) || provObj == null ) {
 			throw new Exception("Invalid Credentials");
 		}
 		return provObj;		 

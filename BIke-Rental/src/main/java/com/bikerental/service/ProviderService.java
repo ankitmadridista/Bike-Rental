@@ -14,6 +14,8 @@ public interface ProviderService {
 	public List<Provider> getAll();
 	public Provider findProviderEmailAndPassword(String provEmail, String provPassword);
 	public Provider findProviderEmail(String provEmail);
+	public String encoder(String password);
+	public boolean decoder(String password, String encoded);
 	
 		
 }

@@ -18,6 +18,7 @@ import com.bikerental.model.Customer;
 import com.bikerental.service.BikeService;
 import com.bikerental.service.BookingService;
 import com.bikerental.service.CustomerService;
+import com.bikerental.service.SendEmailService;
 
 //@CrossOrigin(origins = "http://localhost:4200")
 @CrossOrigin(origins = "*")
@@ -32,13 +33,22 @@ public class CustomerController {
 	private BikeService bikeService;
 	@Autowired
 	private BookingService bookingService;
+	@Autowired
+	private SendEmailService sendEmailService;
 	
 	@PostMapping(value = "customer")
 	public Customer addCust(@RequestBody Customer customer) throws Exception {
 		String tempEmail = customer.getCustEmail();
 		System.out.println("email: "+tempEmail);
+		
+		String pwd = customer.getCustPassword();
+		
+		customer.setCustPassword(customerService.encoder(pwd));
+		System.out.println(customer.getCustPassword());
+		
 		if( tempEmail != null && !"".equals(tempEmail)) {
 			Customer customerObj = customerService.findCustomerEmail(tempEmail);
+			
 			if( customerObj != null ) {
 				throw new Exception("Email " + tempEmail + " already exists" );
 			}					
@@ -46,6 +56,12 @@ public class CustomerController {
 		else {
 			throw new Exception("null email");
 		}
+		
+		String to = customer.getCustEmail();
+		String body = "Thanx ...!!! " + customer.getCustFname() + " You have successfully registered with us.";
+		String topic = "Registration successfull";
+		
+		sendEmailService.sendEmail(to, body, topic);
 		return customerService.addCustomer(customer);		
 	}
 	
@@ -80,14 +96,17 @@ public class CustomerController {
 	public Customer checkProv(@RequestBody Customer customer) throws Exception {
 		String email = customer.getCustEmail();
 		String password = customer.getCustPassword();
+//		String pwdEncode = customerService.encoder(password);
+//		System.out.println(pwdEncode);
 		Customer custObj = null;
 		if( email != null && password != null ) {
-			custObj = customerService.findCustomerEmailAndPassword(email, password);
+			custObj = customerService.findCustomerEmail(email);
 		}
-		if( custObj == null ) {
+		if( !customerService.decoder(password, custObj.getCustPassword()) || custObj == null ) {
 			throw new Exception("Invalid Credentials");
 		}
 		return custObj;		 
+		
 	}
 	
 	@GetMapping(value = "customer-bikes")

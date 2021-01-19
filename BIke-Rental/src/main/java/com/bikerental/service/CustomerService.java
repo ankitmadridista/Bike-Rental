@@ -18,4 +18,6 @@ public interface CustomerService {
 	public String modifyCustStatusToFalse(long custId);
 	public String modifyCustStatusToTrue(long custId);
 	public void addRefund(double refund, long custId);
+	public String encoder(String password);
+	public boolean decoder(String password, String encoded);
 }

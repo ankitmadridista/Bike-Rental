@@ -19,6 +19,7 @@ import com.bikerental.model.Provider;
 import com.bikerental.service.AdminService;
 import com.bikerental.service.BikeService;
 import com.bikerental.service.BookingService;
+import com.bikerental.service.SendEmailService;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -30,12 +31,18 @@ public class AdminController {
 	private BikeService bikeService;
 	@Autowired
 	private BookingService bookingService;
-	
+	@Autowired
+	private SendEmailService sendEmailService;
 	
 	@PostMapping(value = "admin")
 	public Admin insertAdmin(@RequestBody Admin admin) throws Exception {
 		String tempAdminEmail = admin.getAdminEmail();
-		//System.out.println("bike no: "+tempBikeNo);
+		System.out.println(tempAdminEmail);
+		String pwd = admin.getAdminPassword();
+		
+		admin.setAdminPassword(adminService.encoder(pwd));
+		System.out.println(admin.getAdminPassword());
+		
 		if( tempAdminEmail != null && !"".equals(tempAdminEmail)) {
 			Admin adminObj = adminService.getByEmail(tempAdminEmail);
 			if( adminObj != null ) {
@@ -45,6 +52,13 @@ public class AdminController {
 		else {
 			throw new Exception("null BikeNo");
 		}
+		
+		String to = admin.getAdminEmail();
+		String body = "Thanx ...!!! " + admin.getAdminName() + " You have successfully registered with us.";
+		String topic = "Registration successfull";
+		
+		sendEmailService.sendEmail(to, body, topic);
+		
 		return adminService.addAdmin(admin);		
 	}	
 	
@@ -53,11 +67,13 @@ public class AdminController {
 	public Admin checkAdmin(@RequestBody Admin admin) throws Exception {
 		String email = admin.getAdminEmail();
 		String password = admin.getAdminPassword();
+		String pwdEncode = adminService.encoder(password);
+		System.out.println(pwdEncode);
 		Admin adminObj = null;
 		if( email != null && password != null ) {
-			adminObj = adminService.findAdminEmailAndPassword(email, password);
+			adminObj = adminService.getByEmail(email);
 		}
-		if( adminObj == null ) {
+		if( !adminService.decoder(password, adminObj.getAdminPassword()) || adminObj == null ) {
 			throw new Exception("Invalid Credentials");
 		}
 		return adminObj;		 

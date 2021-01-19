@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.bikerental.model.Customer;
@@ -88,5 +89,20 @@ public class CustomerServiceImple implements CustomerService{
 		customerRepository.insertRefund(refund, custId);
 		
 	}
+	
+	@Override
+	public String encoder(String password) {
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String encodedPassword = passwordEncoder.encode(password);
+		return encodedPassword;	
+	}
+	
+	@Override
+	public boolean decoder(String password, String encoded) {
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		boolean isPasswordMatch = passwordEncoder.matches(password, encoded);
+		return isPasswordMatch;
+	}
+
 
 }
