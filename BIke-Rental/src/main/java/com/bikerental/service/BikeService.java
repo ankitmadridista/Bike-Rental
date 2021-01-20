@@ -9,7 +9,7 @@ public interface BikeService {
 	public void removeBike(long id);
 	public void removeBikeByProvId(long ProvId);
 	public Bike getBike(long id);
-	public String modifyBike(Bike bike);
+	public Bike modifyBike(Bike bike);
 	public List<Bike> getAll();
 	public Bike getByBikeNo(String bikeNo);
 	public List<Bike> getByProvId(long provId);

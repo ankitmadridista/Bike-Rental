@@ -82,9 +82,9 @@ public class CustomerController {
 	
 
 	@PutMapping(value = "customer")
-	public String custUpdate(@RequestBody Customer customer) {
-		customerService.modifyCustomer(customer);	
-		return "success";
+	public Customer custUpdate(@RequestBody Customer customer) throws Exception {
+			
+		return customerService.modifyCustomer(customer);
 	}
 	
 

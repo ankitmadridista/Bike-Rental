@@ -22,34 +22,35 @@ public class CustomerServiceImple implements CustomerService{
 
 	@Override
 	public Customer addCustomer(Customer customer) {
-		// TODO Auto-generated method stub
 		return customerRepository.save(customer);
 	}
 
 	@Override
 	public void removeCustomer(long id) {
-		// TODO Auto-generated method stub
 		customerRepository.deleteById(id);
 		
 	}
 
 	@Override
 	public Customer getCustomer(long id) {
-		// TODO Auto-generated method stub
 		Optional<Customer> opt = customerRepository.findById(id);
 		return opt.get();
 	}
 
 	@Override
-	public void modifyCustomer(Customer customer) {
-		// TODO Auto-generated method stub
-		customerRepository.save(customer);
+	public Customer modifyCustomer(Customer customer) throws Exception {
+		
+		Customer custObj = customerRepository.findByCustEmail(customer.getCustEmail());
+		if( custObj != null ) {
+			throw new Exception("Email-Id already exists");
+		}
+		
+		return customerRepository.save(customer);
 		
 	}
 
 	@Override
 	public List<Customer> getAll() {
-		// TODO Auto-generated method stub
 		Iterable<Customer> itr = customerRepository.findAll();
 		Iterator<Customer> it = itr.iterator();
 		List<Customer> li = new ArrayList<Customer>();
@@ -62,13 +63,11 @@ public class CustomerServiceImple implements CustomerService{
 
 	@Override
 	public Customer findCustomerEmailAndPassword(String custEmail, String custPassword) {
-		// TODO Auto-generated method stub
 		return customerRepository.findByCustEmailAndCustPassword(custEmail, custPassword);
 	}
 
 	@Override
 	public Customer findCustomerEmail(String custEmail) {
-		// TODO Auto-generated method stub
 		return customerRepository.findByCustEmail(custEmail);
 	}
 

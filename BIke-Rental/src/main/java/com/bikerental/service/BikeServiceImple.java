@@ -33,9 +33,8 @@ public class BikeServiceImple implements BikeService {
 	}
 
 	@Override
-	public String modifyBike(Bike bike) {
-		bikeRepository.save(bike);
-		return "success";
+	public Bike modifyBike(Bike bike) {
+		return bikeRepository.save(bike);
 	}
 
 	@Override

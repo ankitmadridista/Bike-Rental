@@ -65,9 +65,8 @@ public class BikeController {
 	}
 	
 	@PutMapping(value = "bikes")
-	public String updateBike(@RequestBody Bike bike) {
-		bikeService.modifyBike(bike);	
-		return "success";
+	public Bike updateBike(@RequestBody Bike bike) {
+		return bikeService.modifyBike(bike);	
 	}
 	
 	

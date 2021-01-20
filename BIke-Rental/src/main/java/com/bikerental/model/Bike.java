@@ -1,5 +1,6 @@
 package com.bikerental.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -15,12 +16,13 @@ public class Bike {
 	String typeOfGear;
 	String brandOfBike;
 	String modelOfBike;
+	@Column(unique=true)
 	String rcBookNo;
 	double chargesPerHour;
 	String availableLocation;
 	String bikeStatus;
+	@Column(unique=true)
 	String bikeNo;
-	//double depositAmount;
 	double avgPerLtr;
 	
 	public Bike() {

@@ -10,7 +10,7 @@ public interface ProviderService {
 	public Provider addProvider(Provider provider);
 	public void removeProvider(long id);
 	public Provider getProvider(long id);
-	public void modifyProvider(Provider provider);
+	public Provider modifyProvider(Provider provider) throws Exception;
 	public List<Provider> getAll();
 	public Provider findProviderEmailAndPassword(String provEmail, String provPassword);
 	public Provider findProviderEmail(String provEmail);

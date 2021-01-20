@@ -88,9 +88,9 @@ public class ProviderController {
 	
 	@CrossOrigin(origins = "*")
 	@PutMapping(value = "providers")
-	public String provUpdate(@RequestBody Provider provider) {
-		providerService.modifyProvider(provider);	
-		return "success";
+	public Provider provUpdate(@RequestBody Provider provider) throws Exception {
+		
+		return providerService.modifyProvider(provider);
 	}
 	
 	//prov login
