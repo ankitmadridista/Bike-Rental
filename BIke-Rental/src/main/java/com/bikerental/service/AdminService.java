@@ -18,7 +18,7 @@ public interface AdminService {
 	public void removeProvider(long id);
 	public List<Bike> getAllBikes();
 	public Admin findAdminEmailAndPassword(String adminEmail, String adminPassword);
+	public Admin findAdminEmail(String adminEmail);
 	public String encoder(String password);
 	public boolean decoder(String password, String encoded);
-	//public List<Bike> getAllAvailableBikes();
 }

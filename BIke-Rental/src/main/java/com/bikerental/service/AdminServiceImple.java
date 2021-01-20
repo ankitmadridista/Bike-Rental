@@ -81,16 +81,10 @@ public class AdminServiceImple implements AdminService {
 		return adminRepo.findByAdminEmailAndAdminPassword(adminEmail, adminPassword);
 	}
 	
-//	@Override
-//	public List<Bike> getAllAvailableBikes() {
-//		return adminRepo.findAllAvailableBikes();
-//	}
-	
-//	public void updateProductDetails(int pid, int spid) {
-//		String sql = "update productdetails SET sp_id ="+spid+" WHERE product_id="+pid;
-//		System.out.println("SQL "+sql);
-//		jdbcTemplate.execute(sql);
-//	}
+	@Override
+	public Admin findAdminEmail(String adminEmail) {
+		return adminRepo.findByAdminEmail(adminEmail);
+	}
 		
 	@Override
 	public String encoder(String password) {
@@ -105,6 +99,8 @@ public class AdminServiceImple implements AdminService {
 		boolean isPasswordMatch = passwordEncoder.matches(password, encoded);
 		return isPasswordMatch;
 	}
+
+	
 	
 
 }

@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bikerental.model.Bike;
 import com.bikerental.model.Customer;
 import com.bikerental.service.BikeService;
-import com.bikerental.service.BookingService;
 import com.bikerental.service.CustomerService;
 import com.bikerental.service.SendEmailService;
 
@@ -31,8 +30,6 @@ public class CustomerController {
 	private CustomerService customerService;
 	@Autowired
 	private BikeService bikeService;
-	@Autowired
-	private BookingService bookingService;
 	@Autowired
 	private SendEmailService sendEmailService;
 	
@@ -115,7 +112,43 @@ public class CustomerController {
 		return bikeService.getAllBikesByStatus(status);
 	}
 	
+	@PostMapping(value = "cust-link-mail")
+	public Customer sendLinkOnMail(@RequestBody Customer customer) throws Exception {
+		System.out.println(customer.getCustEmail());
+		Customer custObj = customerService.findCustomerEmail(customer.getCustEmail());
+		if( custObj == null ) {
+			throw new Exception("Email Id is not valid");
+		}
+		
+		String to = custObj.getCustEmail();
+		String body = "Hello ...!!! " + custObj.getCustFname() + " click on this link to set a new password http://localhost:4200/cust-reset-pass-form" ;
+		String topic = "Reset Password";
+		
+		sendEmailService.sendEmail(to, body, topic);		
+		return custObj;	 
+	}
 	
+	
+	@PostMapping(value = "cust-reset-pass")
+	public Customer resetPassword(@RequestBody Customer customer) throws Exception {
+		
+		System.out.println(customer.getCustEmail());
+		String email = customer.getCustEmail();
+		String password = customer.getCustPassword();		
+		
+		Customer custObj = customerService.findCustomerEmail(email);
+		if( custObj == null ) {
+			throw new Exception("Invalid Email Id");		
+		}
+		
+		String encPassword = customerService.encoder(password);
+		
+		if( email != null && password != null )
+			custObj.setCustPassword(encPassword);
+		
+		customerService.modifyCustomer(custObj);;
+		return custObj;
+	}
 	
 	
 }

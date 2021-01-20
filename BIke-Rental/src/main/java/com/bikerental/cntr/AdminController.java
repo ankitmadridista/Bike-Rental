@@ -18,7 +18,6 @@ import com.bikerental.model.Bike;
 import com.bikerental.model.Provider;
 import com.bikerental.service.AdminService;
 import com.bikerental.service.BikeService;
-import com.bikerental.service.BookingService;
 import com.bikerental.service.SendEmailService;
 
 @CrossOrigin(origins = "*")
@@ -29,8 +28,6 @@ public class AdminController {
 	private AdminService adminService;
 	@Autowired
 	private BikeService bikeService;
-	@Autowired
-	private BookingService bookingService;
 	@Autowired
 	private SendEmailService sendEmailService;
 	
@@ -129,5 +126,43 @@ public class AdminController {
 		return bikeService.getAllBikesByStatus(status);
 	}
 	
+	@PostMapping(value = "admin-link-mail")
+	public Admin sendLinkOnMail(@RequestBody Admin admin) throws Exception {
+		System.out.println(admin.getAdminEmail());
+		Admin adminObj = adminService.findAdminEmail(admin.getAdminEmail());
+		if( adminObj == null ) {
+			throw new Exception("Email Id is not valid");
+		}
+		
+		String to = adminObj.getAdminEmail();
+		String body = "Hello ...!!! " + adminObj.getAdminName() + " click on this link to set a new password http://localhost:4200/admin-reset-pass-form" ;
+		String topic = "Reset Password";
+		
+		sendEmailService.sendEmail(to, body, topic);
+		
+		return adminObj;	 
+	}
+	
+	
+	@PostMapping(value = "admin-reset-pass")
+	public Admin resetPassword(@RequestBody Admin admin) throws Exception {
+		
+		System.out.println(admin.getAdminEmail());
+		String email = admin.getAdminEmail();
+		String password = admin.getAdminPassword();		
+		
+		Admin adminObj = adminService.findAdminEmail(email);
+		if( adminObj == null ) {
+			throw new Exception("Invalid Email Id");		
+		}
+		
+		String encPassword = adminService.encoder(password);
+		
+		if( email != null && password != null )
+			adminObj.setAdminPassword(encPassword);
+		
+		adminService.modifyMyProfile(adminObj);
+		return adminObj;
+	}
 	
 }
