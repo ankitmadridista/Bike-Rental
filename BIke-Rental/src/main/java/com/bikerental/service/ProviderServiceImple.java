@@ -36,13 +36,13 @@ public class ProviderServiceImple implements ProviderService {
 	}
 
 	@Override
-	public Provider modifyProvider(Provider provider) throws Exception {
+	public Provider modifyProvider(Provider provider) {
 		//System.out.println(provider.getProvEmail());
-		Provider provObj = providerRepository.findByProvEmail(provider.getProvEmail());
-		//System.out.println(provObj.getProvEmail());
-		if( provObj != null ) {
-			throw new Exception("Email Id already exists");
-		}
+//		Provider provObj = providerRepository.findByProvEmail(provider.getProvEmail());
+//		//System.out.println(provObj.getProvEmail());
+//		if( provObj != null ) {
+//			throw new Exception("Email Id already exists");
+//		}
 		
 		return providerRepository.save(provider);
 	}

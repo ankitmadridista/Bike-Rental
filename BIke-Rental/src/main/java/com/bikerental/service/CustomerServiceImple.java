@@ -38,12 +38,12 @@ public class CustomerServiceImple implements CustomerService{
 	}
 
 	@Override
-	public Customer modifyCustomer(Customer customer) throws Exception {
+	public Customer modifyCustomer(Customer customer) {
 		
-		Customer custObj = customerRepository.findByCustEmail(customer.getCustEmail());
-		if( custObj != null ) {
-			throw new Exception("Email-Id already exists");
-		}
+//		Customer custObj = customerRepository.findByCustEmail(customer.getCustEmail());
+//		if( custObj != null ) {
+//			throw new Exception("Email-Id already exists");
+//		}
 		
 		return customerRepository.save(customer);
 		

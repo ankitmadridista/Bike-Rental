@@ -9,7 +9,7 @@ public interface CustomerService {
 	public Customer addCustomer(Customer customer);
 	public void removeCustomer(long id);
 	public Customer getCustomer(long id);
-	public Customer modifyCustomer(Customer customer) throws Exception;
+	public Customer modifyCustomer(Customer customer);
 	public List<Customer> getAll();
 	public Customer findCustomerEmailAndPassword(String custEmail, String custPassword);
 	public Customer findCustomerEmail(String custEmail);
