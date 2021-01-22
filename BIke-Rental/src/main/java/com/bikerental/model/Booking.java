@@ -18,8 +18,6 @@ public class Booking {
 	long custId;
 	double bookChargesPerHours;
 	double bookBillAmount;
-	double bookReadingAtStart;
-	double bookReadingAtEnd;
 	double bookDepositAmount;
 	double bookInitialFuelCost; 
 	
@@ -38,7 +36,7 @@ public class Booking {
 	}
 	
 	public Booking(long bookId, long provId, long bikeId, long custId, double bookChargesPerHours,
-			double bookBillAmount, double bookReadingAtStart, double bookReadingAtEnd, double bookDepositAmount,
+			double bookBillAmount, double bookDepositAmount,
 			double bookInitialFuelCost, long bookStartTimeCalc, long bookEndTimeCalc, String bookStartTimeCust,
 			String bookEndTimeCust, String bookPaymentStatus, String bookStatus, String bookFeedbackCustomer,
 			String bookFeedabackProvider) {
@@ -49,8 +47,6 @@ public class Booking {
 		this.custId = custId;
 		this.bookChargesPerHours = bookChargesPerHours;
 		this.bookBillAmount = bookBillAmount;
-		this.bookReadingAtStart = bookReadingAtStart;
-		this.bookReadingAtEnd = bookReadingAtEnd;
 		this.bookDepositAmount = bookDepositAmount;
 		this.bookInitialFuelCost = bookInitialFuelCost;
 		this.bookStartTimeCalc = bookStartTimeCalc;
@@ -105,18 +101,6 @@ public class Booking {
 	}
 	public void setBookBillAmount(double bookBillAmount) {
 		this.bookBillAmount = bookBillAmount;
-	}
-	public double getBookReadingAtStart() {
-		return bookReadingAtStart;
-	}
-	public void setBookReadingAtStart(double bookReadingAtStart) {
-		this.bookReadingAtStart = bookReadingAtStart;
-	}
-	public double getBookReadingAtEnd() {
-		return bookReadingAtEnd;
-	}
-	public void setBookReadingAtEnd(double bookReadingAtEnd) {
-		this.bookReadingAtEnd = bookReadingAtEnd;
 	}
 	public double getBookDepositAmount() {
 		return bookDepositAmount;

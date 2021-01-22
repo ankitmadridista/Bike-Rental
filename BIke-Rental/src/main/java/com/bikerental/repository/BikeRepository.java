@@ -14,7 +14,6 @@ import com.bikerental.model.Bike;
 @Repository
 public interface BikeRepository extends JpaRepository<Bike, Long>{
 	public Bike findByBikeNo(String bikeNo);
-	public Bike findByRcBookNo(String rcBookNo);
 	public List<Bike> findAllByProvId(long id);
 	
 	@Modifying

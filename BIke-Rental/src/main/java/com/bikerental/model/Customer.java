@@ -30,8 +30,10 @@ public class Customer {
 	boolean custIsActive;
 	double custWallet;
 	
+
 	public Customer() {
 	}
+	
 	
 	public Customer(long custId, String custEmail, String custPassword, String custFname, String custDateOfBirth,
 			String custDrivingLicNo, int custAge, String custContactNo, String custAadhar, String custAddress,
@@ -53,6 +55,8 @@ public class Customer {
 		this.custIsActive = custIsActive;
 		this.custWallet = custWallet;
 	}
+
+
 
 
 	public long getCustId() {

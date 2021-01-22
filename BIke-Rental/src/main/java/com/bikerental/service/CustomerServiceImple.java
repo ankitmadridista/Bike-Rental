@@ -14,11 +14,19 @@ import com.bikerental.model.Customer;
 import com.bikerental.repository.CustomerRepository;
 
 
+
+import javax.servlet.ServletContext;
+
+
+
+
 @Service
 public class CustomerServiceImple implements CustomerService{
 	
 	@Autowired
 	private CustomerRepository customerRepository;
+	@Autowired
+	private CommonUtilService util;
 
 	@Override
 	public Customer addCustomer(Customer customer) {
@@ -36,6 +44,20 @@ public class CustomerServiceImple implements CustomerService{
 		Optional<Customer> opt = customerRepository.findById(id);
 		return opt.get();
 	}
+	
+	//test image
+//	@Override
+//	public Customer getCustomer(long id) {
+//		Optional<Customer> opt = customerRepository.findById(id);
+//		Customer cust = opt.get();
+//		System.out.println(cust.getFileName());
+//		System.out.println(cust.getCustFname());
+//		cust.setFileName(util.fetchImage(cust.getFileName()));
+//		//cust.setFileName(util.fetchImage("Events_1611261270472.jpg"));
+//		
+//		return cust;
+//	}
+	
 
 	@Override
 	public Customer modifyCustomer(Customer customer) {

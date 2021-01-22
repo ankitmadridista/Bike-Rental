@@ -11,13 +11,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.bikerental.model.Bike;
 import com.bikerental.model.Customer;
 import com.bikerental.service.BikeService;
+import com.bikerental.service.CommonUtilService;
 import com.bikerental.service.CustomerService;
 import com.bikerental.service.SendEmailService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 //@CrossOrigin(origins = "http://localhost:4200")
 @CrossOrigin(origins = "*")
@@ -32,6 +36,8 @@ public class CustomerController {
 	private BikeService bikeService;
 	@Autowired
 	private SendEmailService sendEmailService;
+	@Autowired
+	private CommonUtilService util;
 	
 	@PostMapping(value = "customer")
 	public Customer addCust(@RequestBody Customer customer) throws Exception {
@@ -62,6 +68,7 @@ public class CustomerController {
 		return customerService.addCustomer(customer);		
 	}
 	
+	
 
 	@GetMapping(value = "customer")
 	public List<Customer> custList(){
@@ -80,12 +87,22 @@ public class CustomerController {
 	
 	}
 	
-
 	@PutMapping(value = "customer")
 	public Customer custUpdate(@RequestBody Customer customer) throws Exception {
 			
 		return customerService.modifyCustomer(customer);
 	}
+
+//	@PutMapping(value = "customer")
+//	public Customer custUpdate(@RequestParam String customer, @RequestParam MultipartFile image) throws Exception {
+//		
+//		Customer cust = new ObjectMapper().readValue(customer, Customer.class);
+//		System.out.println(cust.getCustFname());
+//		String fileName = util.saveImage(image);
+//		cust.setFileName(fileName);
+//		
+//		return customerService.modifyCustomer(cust);
+//	}
 	
 
 	@PostMapping(value = "customer-check")

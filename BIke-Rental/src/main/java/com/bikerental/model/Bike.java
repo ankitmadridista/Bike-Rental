@@ -16,8 +16,6 @@ public class Bike {
 	String typeOfGear;
 	String brandOfBike;
 	String modelOfBike;
-	@Column(unique=true)
-	String rcBookNo;
 	double chargesPerHour;
 	String availableLocation;
 	String bikeStatus;
@@ -29,7 +27,7 @@ public class Bike {
 		super();
 	}
 	
-	public Bike(long bikeId, long provId, String typeOfGear, String brandOfBike, String modelOfBike, String rcBookNo,
+	public Bike(long bikeId, long provId, String typeOfGear, String brandOfBike, String modelOfBike, 
 			double chargesPerHour, String availableLocation, String bikeStatus, String bikeNo, double avgPerLtr) {
 		super();
 		this.bikeId = bikeId;
@@ -37,7 +35,6 @@ public class Bike {
 		this.typeOfGear = typeOfGear;
 		this.brandOfBike = brandOfBike;
 		this.modelOfBike = modelOfBike;
-		this.rcBookNo = rcBookNo;
 		this.chargesPerHour = chargesPerHour;
 		this.availableLocation = availableLocation;
 		this.bikeStatus = bikeStatus;
@@ -75,12 +72,7 @@ public class Bike {
 	public void setModelOfBike(String modelOfBike) {
 		this.modelOfBike = modelOfBike;
 	}
-	public String getRcBookNo() {
-		return rcBookNo;
-	}
-	public void setRcBookNo(String rcBookNo) {
-		this.rcBookNo = rcBookNo;
-	}
+	
 	public double getChargesPerHour() {
 		return chargesPerHour;
 	}
