@@ -1,6 +1,7 @@
 package com.bikerental.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -36,13 +37,13 @@ public class AdminServiceImple implements AdminService {
 
 	@Override
 	public Admin showMyProfile(long id) {
-		Admin admin=adminRepo.getOne(id);		
-		return admin;
+		Optional<Admin> opt = adminRepo.findById(id);	
+		return opt.get();
 	}
 
 	@Override
-	public void modifyMyProfile(Admin a) {
-		adminRepo.save(a);
+	public Admin modifyMyProfile(Admin a) {
+		return adminRepo.save(a);
 	}
 
 	@Override

@@ -89,9 +89,8 @@ public class AdminController {
 	}
 	
 	@PutMapping(value = "admin")
-	public String updateAdmin(@RequestBody Admin admin) {
-		adminService.modifyMyProfile(admin);			
-		return "success";
+	public Admin updateAdmin(@RequestBody Admin admin) {
+		return adminService.modifyMyProfile(admin);			
 	}
 	
 	@GetMapping(value = "admin")

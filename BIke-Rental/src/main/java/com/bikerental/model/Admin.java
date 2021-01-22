@@ -10,22 +10,25 @@ public class Admin {
 	@Id
 	@GeneratedValue
 	long adminId;
-	@Column(unique=true)
+	//@Column(unique=true)
 	String adminName;
 	String adminEmail;
 	String adminPassword;
+	double adminWallet;
 	
 	public Admin() {
 		super();
 	}
 
-	public Admin(int adminId, String adminName, String adminEmail, String adminPassword) {
+	public Admin(long adminId, String adminName, String adminEmail, String adminPassword, double adminWallet) {
 		super();
 		this.adminId = adminId;
 		this.adminName = adminName;
 		this.adminEmail = adminEmail;
 		this.adminPassword = adminPassword;
+		this.adminWallet = adminWallet;
 	}
+
 
 	public long getAdminId() {
 		return adminId;
@@ -57,6 +60,14 @@ public class Admin {
 
 	public void setAdminPassword(String adminPassword) {
 		this.adminPassword = adminPassword;
+	}
+
+	public double getAdminWallet() {
+		return adminWallet;
+	}
+
+	public void setAdminWallet(double adminWallet) {
+		this.adminWallet = adminWallet;
 	}
 	
 	

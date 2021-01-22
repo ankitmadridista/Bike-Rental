@@ -10,7 +10,7 @@ public interface AdminService {
 	public Admin addAdmin(Admin admin);
 	public void removeAdmin(long id);
 	public Admin showMyProfile(long id);
-	public void modifyMyProfile(Admin a);
+	public Admin modifyMyProfile(Admin a);
 	public List<Admin> getAllAdmin();
 	public Admin getByEmail(String adminEmail);
 	public List<Provider> getAllProvider();
