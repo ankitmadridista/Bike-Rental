@@ -73,11 +73,13 @@ public class BookingController {
 			customerService.addRefund( newWallet, book.getCustId());
 			book.setBookBillAmount(book.getBookDepositAmount() + book.getBookBillAmount());
 			customerService.modifyCustStatusToFalse(book.getCustId());
+			bikeService.modifyBikeStatusToAvailable(book.getBikeId());
 			return bookingService.modifyBooking(book); 
 		}
 		else if( book.getBookBillAmount() == 0 && book.getBookStatus().equals("Completed") ) {
 			book.setBookPaymentStatus("Paid");
 			customerService.modifyCustStatusToFalse(book.getCustId());
+			bikeService.modifyBikeStatusToAvailable(book.getBikeId());
 			return bookingService.modifyBooking(book);
 		}
 		else if( book.getBookStatus().equals("Completed") && book.getBookPaymentStatus().equals("Paid") ) {
